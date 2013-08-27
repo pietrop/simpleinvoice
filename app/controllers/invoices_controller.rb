@@ -1,4 +1,10 @@
 class InvoicesController < ApplicationController
+
+  def new 
+    @user = User.find(params[:user_id])
+     @invoice = @user.invoices.build(params[:invoice])
+  end 
+
 	def create
     @user = User.find(params[:user_id])
     @invoice = @user.invoices.create(params[:invoice].permit(:number, :date))
@@ -15,10 +21,7 @@ class InvoicesController < ApplicationController
   	 @invoices = @user.invoices
   end 
 
-  def new 
-  	@user = User.find(params[:user_id])
-		 @invoice = @user.invoices.build(params[:invoice])
-  end 
+
 
   def edit 
      @user = User.find(params[:user_id])
@@ -32,7 +35,7 @@ class InvoicesController < ApplicationController
 
 end
 
-
+#not sure if delete works
 def destroy 
 
 @user = User.find(params[:user_id])

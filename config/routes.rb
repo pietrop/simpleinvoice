@@ -1,8 +1,12 @@
 Simpleinvoice::Application.routes.draw do
 
   resources :users do
-    resources :invoices
+    resources :invoices do 
+    resources :notes
  end 
+end 
+
+ 
  
   get "welcome/index"
   # The priority is based upon order of creation: first created -> highest priority.
