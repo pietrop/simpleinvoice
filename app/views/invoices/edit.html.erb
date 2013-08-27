@@ -1,0 +1,16 @@
+<%= form_for [@user , @invoice] do |f| %>
+  <p>
+    <%= f.label :number %><br>
+    <%= f.text_field :number %>
+  </p>
+  <p>
+    <%= f.label :date %><br>
+    <%= f.text_field :date %> </p>
+
+ 
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
+

@@ -1,0 +1,28 @@
+<h1><%=  @user.name %> invoices</h1>
+<h2>Listing Invoices</h2>
+ 
+<table>
+  <tr>
+    <th>Number</th>
+    <th>Date</th>
+   
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+ 
+  <% @invoices.each do |invoice| %>
+    <tr>
+      <td><%= invoice.number %> </td>
+      <td><%= invoice.date %></td>
+     
+<td><%= link_to 'Show', user_invoice_path(@user, invoice) %></td>
+        <td><%= link_to 'Edit', edit_user_invoice_path( @user, invoice) %></td>
+        <td><%= link_to 'Delete', user_invoice_path(@user, invoice),
+                    method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        
+  </tr>
+    </tr>
+  <% end %>
+</table>
+

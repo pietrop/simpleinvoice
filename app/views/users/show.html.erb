@@ -1,0 +1,21 @@
+<p>
+  <strong>Name:</strong>
+  <%= @user.name.capitalize %>  <%= @user.last_name.capitalize %>
+</p>
+ 
+<p>
+  <strong>Address:</strong>
+  <%= @user.address.capitalize %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @user.phone %>
+</p>
+
+<p>
+  <strong>e-mail:</strong>
+  <%= @user.email %>
+</p>
+
+<%= link_to 'Back', users_path %>
