@@ -3,6 +3,7 @@ Simpleinvoice::Application.routes.draw do
   resources :users do
     resources :invoices do 
     resources :notes
+    resources :services
  end 
 end 
 

@@ -1,0 +1,23 @@
+<%= form_for [@user , @invoice, @service] do |f| %>
+  <p>
+    <%= f.label :date %><br>
+    <%= f.date_field :date %>
+  </p>
+
+   <p>
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </p>
+   <p>
+    <%= f.label :unit_type %><br>
+    <%= f.text_field :unit_type %>
+  </p>
+     <p>
+    <%= f.label :rate %><br>
+    <%= f.text_field :rate %>
+  </p>
+ <p>
+    <%= f.submit %></p>
+<% end %>
+
+

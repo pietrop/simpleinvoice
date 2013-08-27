@@ -37,7 +37,8 @@ end
  def update
   @user = User.find(params[:user_id])
   @invoice = @user.invoices.find(params[:invoice_id])
- @note = @invoice.notes.create(note_params)
+ @note = @invoice.notes.find(params[:id])
+ @note.update(note_params)
  render 'show'
 
 end
@@ -50,7 +51,7 @@ def destroy
      @note = @invoice.notes.find(params[:id])
     @note.destroy 
 
-   redirect_to user_invoices_path(@user)
+   redirect_to user_invoice_notes_path(@user , @invoice)
   end 
 
  private

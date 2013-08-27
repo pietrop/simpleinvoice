@@ -4,8 +4,6 @@
 <table>
   <tr>
     <th>Text</th>
-    
-   
     <th></th>
     <th></th>
     <th></th>
@@ -14,10 +12,14 @@
   <% @notes.each do |note| %>
     <tr>
       <td><%= note.text %> </td>
-      
-    
-  </tr>
+
+      <td><%= link_to 'Show', user_invoice_note_path(@user, @invoice, note) %></td>
+        <td><%= link_to 'Edit', edit_user_invoice_note_path(@user, @invoice, note) %></td>
+         <td><%= link_to 'Delete', user_invoice_note_path(@user, @invoice, note),
+                    method: :delete, data: { confirm: 'Are you sure?' } %></td>
+   
     </tr>
   <% end %>
 </table>
 
+ <% @notes.inspect %>

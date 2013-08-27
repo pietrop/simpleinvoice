@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  date: 2013-08-27
+  service: MyString
+  rate: 1
+  invoice_id: 
+
+two:
+  date: 2013-08-27
+  service: MyString
+  rate: 1
+  invoice_id: 

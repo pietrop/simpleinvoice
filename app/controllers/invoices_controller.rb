@@ -1,4 +1,16 @@
 class InvoicesController < ApplicationController
+  def index
+    @user = User.find(params[:user_id])
+     @invoices = @user.invoices
+    # @client = Client.find(params[:client_id])
+
+    # if @user
+    #   @invoices = @user.invoices
+    # elsif @client
+    #   @invoices = @client.invoices
+    # end
+  end 
+
 
   def new 
     @user = User.find(params[:user_id])
@@ -16,10 +28,7 @@ class InvoicesController < ApplicationController
   	 @invoice = @user.invoices.find(params[:id])
   end
 
-  def index 
-  	@user = User.find(params[:user_id])
-  	 @invoices = @user.invoices
-  end 
+
 
 
 
@@ -30,7 +39,8 @@ class InvoicesController < ApplicationController
 
   def update
   @user = User.find(params[:user_id])
- @invoice = @user.invoices.create(invoice_params)
+ @invoice = @user.invoices.find(params[:id])
+ @invoice.update(invoice_params)
  render 'show'
 
 end
