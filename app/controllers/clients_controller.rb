@@ -2,6 +2,7 @@ class ClientsController < ApplicationController
 
 	def index
 		@clients = Client.all
+    @user = current_user
 	end 
 
 	def new

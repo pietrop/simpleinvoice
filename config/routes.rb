@@ -1,17 +1,13 @@
 Simpleinvoice::Application.routes.draw do
 
-  resources :users do
-    resources :invoices do 
+  devise_for :users
+  resources :invoices do 
     resources :notes
     resources :services
- end 
-end 
-
-resources :users do 
+  end 
   resources :banks 
-end 
 
-resources :clients
+  resources :clients
    
  
  

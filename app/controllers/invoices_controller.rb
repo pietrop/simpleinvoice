@@ -1,6 +1,6 @@
 class InvoicesController < ApplicationController
   def index
-    @user = User.find(params[:user_id])
+    @user = current_user
      @invoices = @user.invoices
     # @client = Client.find(params[:client_id])
 
@@ -12,7 +12,7 @@ class InvoicesController < ApplicationController
   end 
 
   def new 
-    @user = User.find(params[:user_id])
+    @user = current_user
      @invoice = @user.invoices.build(params[:invoice])
      @current_user_client = @user.clients
      
@@ -21,7 +21,7 @@ class InvoicesController < ApplicationController
   end 
 
 	def create
-    @user = User.find(params[:user_id])
+    @user = current_user
     
     @client = Client.find_or_create_by(name: params[:client])
     #params[:invoice]=create({:number=>params[:number],:date=>params[:date:]})
@@ -29,10 +29,12 @@ class InvoicesController < ApplicationController
 
     @invoice.client = @client
 
-    redirect_to user_path(@user)
+    # redirect_to 'root'
 
     # find_or_create_by()
     @invoice.client = @client
+    @invoice.user = @user
+    
     @invoice.save
 
   end

@@ -51,9 +51,9 @@
 
        <td>Status</td>
 
-      <td><%= link_to 'Show', user_invoice_path(@user, invoice) %></td>
-      <td><%= link_to 'Edit', edit_user_invoice_path( @user, invoice) %></td>
-      <td><%= link_to 'Delete', user_invoice_path(@user, invoice),
+      <td><%= link_to 'Show', invoice_path(invoice) %></td>
+      <td><%= link_to 'Edit', edit_invoice_path(invoice) %></td>
+      <td><%= link_to 'Delete', invoice_path(invoice),
                     method: :delete, data: { confirm: 'Are you sure?' } %></td>
   
   </tr>
@@ -62,6 +62,6 @@
 </table>
 
 
-<%= link_to 'New Invoice', new_user_invoice_path(@user ),  class: "btn btn-primary" %>
+<%= link_to 'New Invoice', new_invoice_path,  class: "btn btn-primary" %>
 
 

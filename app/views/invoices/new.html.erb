@@ -2,7 +2,7 @@
 <div class="well">
 <fieldset>
   <legend>New Invoice </legend>
-<%= form_for [@user , @invoice], class: "form-horizontal" do |f| %>
+<%= form_for @invoice, class: "form-horizontal" do |f| %>
 
   <div class="form-group">
     <%= f.label :number %><br>
@@ -22,7 +22,7 @@
 
   
 
- <%= link_to 'Back', user_invoices_path(@user ),  class: "btn btn-primary" %>
+ <%= link_to 'Back', invoices_path(@user ),  class: "btn btn-primary" %>
   <%= f.button 'Create', class: 'btn btn-primary' %>
  
 <% end %>
