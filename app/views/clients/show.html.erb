@@ -1,0 +1,34 @@
+<p>
+  <strong>Name:</strong>
+  <%= @client.name.capitalize %> 
+</p>
+ 
+<p>
+  <strong>Address:</strong>
+  <%= @client.address.capitalize %>
+</p>
+
+<p>
+  <strong>Contact Name:</strong>
+  <%= @client.contact_name %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @client.phone %>
+</p>
+
+<p>
+  <strong>e-mail:</strong>
+  <%= @client.email %>
+</p>
+
+<p>
+  <strong>Agency Client:</strong>
+ 
+  <%= @client.agency_client %><br>
+   <small>if invoicing an agency, their client you worked for</small>
+</p>
+
+<%= link_to 'Back', clients_path( @client ) ,  class: "btn btn-primary" %>
+<%= link_to 'Edit', edit_client_path(@client) ,  class: "btn btn-primary"  %>

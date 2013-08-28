@@ -11,7 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130827094512) do
+ActiveRecord::Schema.define(version: 20130827113058) do
+
+  create_table "banks", force: true do |t|
+    t.string   "sort_code"
+    t.string   "account_name"
+    t.integer  "account_number"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "banks", ["user_id"], name: "index_banks_on_user_id"
+
+  create_table "clients", force: true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "contact_name"
+    t.string   "phone"
+    t.string   "email"
+    t.string   "agency_client"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "invoices", force: true do |t|
     t.integer  "number"
@@ -19,8 +41,10 @@ ActiveRecord::Schema.define(version: 20130827094512) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "client_id"
   end
 
+  add_index "invoices", ["client_id"], name: "index_invoices_on_client_id"
   add_index "invoices", ["user_id"], name: "index_invoices_on_user_id"
 
   create_table "notes", force: true do |t|

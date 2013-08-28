@@ -1,0 +1,31 @@
+
+
+<div class="well">
+<fieldset>
+  <legend>Bank Account </legend>
+<%= form_for [@user , @bank] do |f| %>
+  <div class="form-group">
+    <%= f.label :account_name %><br>
+    <%= f.text_field :account_name, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :sort_code %><br>
+    <%= f.text_field :sort_code, class: 'form-control' %>
+   </div>
+  </p> <div class="form-group">  <p>
+    <p>
+    <%= f.label :account_number %><br>
+    <%= f.text_field :account_number, class: 'form-control' %>
+  </div>
+
+ 
+ <%= link_to 'Back', user_invoice_path(@user, @invoice),  class: "btn btn-primary" %>
+  <%= f.button 'Update' , class: 'btn btn-primary' %>
+
+ <% end %>
+</fieldset>
+</div>
+
+</div>
+
+

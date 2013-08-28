@@ -1,16 +1,34 @@
-<%= form_for [@user , @invoice] do |f| %>
-  <p>
+
+<div class="well">
+<fieldset>
+  <legend>New Invoice </legend>
+<%= form_for [@user , @invoice], class: "form-horizontal" do |f| %>
+
+  <div class="form-group">
     <%= f.label :number %><br>
-    <%= f.text_field :number %>
-  </p>
-  <p>
+    <%= f.text_field :number, class: 'form-control' %>
+  </div>
+ <div class="form-group">
     <%= f.label :date %><br>
-    <%= f.date_field :date %> </p>
+    <%= f.date_field :date, class: 'form-control' %> </p>
+  </div>
+<div class="form-group">
+    <%= f.label :client %><br>
+    <%= text_field_tag :client, nil, placeholder: 'Search or create a client', class: 'form-control' %>
+  </div>
 
+
+<!--   <%= f.collection_select(:client_id, Client.all, :id, :name) %> -->
+
+  
+
+ <%= link_to 'Back', user_invoices_path(@user ),  class: "btn btn-primary" %>
+  <%= f.button 'Create', class: 'btn btn-primary' %>
  
-  <p>
-    <%= f.submit %>
-  </p>
 <% end %>
+  
 
+
+</fieldset>
+</div>
 

@@ -1,0 +1,52 @@
+
+
+<div class="well">
+<fieldset>
+<legend>New Client</legend>
+<%= form_for @client do |f| %>
+
+
+  
+  <div class="form-group">
+      <div class="controls">
+      <%= f.label :name %><br>
+      <%= f.text_field :name , class: 'form-control' %>
+   </div>
+    <div class="controls">
+  
+      <%= f.label :address %><br>
+      <%= f.text_area :address , class: 'form-control' %>
+   
+   </div>
+  
+
+    <div class="form-group">
+      <%= f.label :contact_name %><br>
+      <%= f.text_field :contact_name, class: 'form-control'  %>
+   </div>
+    <div class="form-group">
+      <%= f.label :phone %><br>
+      <%= f.text_field :phone, class: 'form-control'  %>
+   </div>
+   
+   <div class="form-group">
+      <%= f.label :email %><br>
+      <%= f.text_field :email, class: 'form-control' %>
+      </div>
+     <div class="form-group">
+      <%= f.label :agency_client %>*<br>
+      <%= f.text_field :agency_client, class: 'form-control' %>
+         <small>* if invoicing an agency, their client you worked for.</small>
+  </div>
+    
+    <%= link_to 'Back', clients_path,  class: "btn btn-primary"  %>
+
+
+ <%= f.button 'Create' , class: 'btn btn-primary' %>
+
+
+<% end %>
+</fieldset>
+</div>
+
+</div>

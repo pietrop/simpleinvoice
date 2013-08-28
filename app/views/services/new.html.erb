@@ -1,23 +1,45 @@
+
+
+<div class="well">
+<fieldset>
+  <legend>New Service </legend>
 <%= form_for [@user , @invoice, @service] do |f| %>
-  <p>
+ <div class="form-group">
     <%= f.label :date %><br>
-    <%= f.date_field :date %>
-  </p>
- <p>
+    <%= f.date_field :date, class: 'form-control' %>
+  </div>
+ <div class="form-group">
     <%= f.label :description %><br>
-    <%= f.text_field :description %>
-  </p>
-    <p>
+    <%= f.text_field :description, class: 'form-control' %>
+  </div>
+    <div class="form-group">
     <%= f.label :unit_type %><br>
-    <%= f.text_field :unit_type %>
-  </p>
-    <p>
+    <%= f.text_field :unit_type, class: 'form-control' %>
+  </div>
+
+
+  <div class="form-group">
+    <%= f.select :unit_type, options_for_select([['Per Week', 'pw'],['Per Day', 'pd'],['Per Month', 'pm'] ]), {}, class: 'form-control'  %>
+
+
+  </div>
+
+
+
+  <div class="form-group">
     <%= f.label :rate %><br>
-    <%= f.text_field :rate %>
-  </p>
- <p>
-    <%= f.submit %>
-  </p>
-<% end %>
+    <%= f.text_field :rate, class: 'form-control' %>
+  </div>
+ 
+
+ <%= link_to 'Back', user_invoice_path(@user, @invoice),  class: "btn btn-primary" %>
+  <%= f.button 'Create' , class: 'btn btn-primary' %>
+
+ <% end %>
+</fieldset>
+</div>
+
+</div>
+
 
 

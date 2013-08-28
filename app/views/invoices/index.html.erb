@@ -1,28 +1,67 @@
 <h1><%=  @user.name %> invoices</h1>
 <h2>Listing Invoices</h2>
  
-<table>
-  <tr>
-    <th>Number</th>
+ <p>Today is the <%= Time.now.strftime("%d %h %y" ) %></p>
+<table class="table table-hover" >
+  <tr class="active">
+    <th>N</th>
     <th>Date</th>
    
+    <th>Client</th>
+    <th>Start</th>
+    <th>End</th>
+    <th>Days</th>
+    <th>Unit</th>
+    <th>Rate</th>
+    <th>Total</th>
+    <th>Due on</th>
+     
+
+    <th>Last Note</th>
+    <th>Status</th>
     <th></th>
     <th></th>
     <th></th>
   </tr>
- 
   <% @invoices.each do |invoice| %>
     <tr>
       <td><%= invoice.number %> </td>
-      <td><%= invoice.date %></td>
-     
-<td><%= link_to 'Show', user_invoice_path(@user, invoice) %></td>
-        <td><%= link_to 'Edit', edit_user_invoice_path( @user, invoice) %></td>
-        <td><%= link_to 'Delete', user_invoice_path(@user, invoice),
+
+      <% if invoice.date %>
+        <td><%= invoice.date.strftime("%d %h %y" ) %></td>
+      <% end %>
+      <td><%= invoice.client.name %></td>
+
+      <% unless invoice.services.empty? %>
+        <td><%= invoice.services.order("date").first.date.strftime("%d %h %y" ) %></td>
+        <td><%= invoice.services.order("date").last.date.strftime("%d %h %y" ) %></td>
+        <td><%= (invoice.services.count).to_i  %></td>
+        <td><%= invoice.services.first.unit_type %></td>
+        <td>£ <%= invoice.services.first.rate   %></td>
+        <td>£ <strong> <%= invoice.services.sum(:rate) %></strong></td>
+      <% end %>
+
+      <% if invoice.date %>
+        <td><%= (invoice.date + 1.month).strftime("%d %h %y" ) %></ </td>
+      <% end %>
+
+      <% unless invoice.notes.empty? %>
+        <td><%= invoice.notes.last.text.split(" ").first(4).join(" ") %> ...</td>
+      <% end %>
+
+       <td>Status</td>
+
+      <td><%= link_to 'Show', user_invoice_path(@user, invoice) %></td>
+      <td><%= link_to 'Edit', edit_user_invoice_path( @user, invoice) %></td>
+      <td><%= link_to 'Delete', user_invoice_path(@user, invoice),
                     method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        
+  
   </tr>
     </tr>
   <% end %>
 </table>
+
+
+<%= link_to 'New Invoice', new_user_invoice_path(@user ),  class: "btn btn-primary" %>
+
 

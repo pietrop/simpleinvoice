@@ -1,0 +1,30 @@
+<h1><%=  @user.name.capitalize %> Bank Account: <%=  @banks.first.account_name.capitalize %></h1>
+<h2>Listing Invoices</h2>
+ 
+<table>
+  <tr>
+    <th> Account Name</th>
+    <th>Sort code</th>
+    <th>Account number</th>
+   
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+ 
+  <% @banks.each do |bank| %>
+    <tr>
+      <td><%= bank.account_name %> </td>
+      <td><%= bank.sort_code %> </td>
+      <td><%= bank.account_number %> </td>
+     
+<td><%= link_to 'Show', user_bank_path(@user, bank) %></td>
+        <td><%= link_to 'Edit', edit_user_bank_path( @user, bank) %></td>
+        <td><%= link_to 'Delete', user_bank_path(@user, bank),
+                    method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        
+  </tr>
+    </tr>
+  <% end %>
+</table>
+

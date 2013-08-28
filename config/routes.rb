@@ -7,6 +7,12 @@ Simpleinvoice::Application.routes.draw do
  end 
 end 
 
+resources :users do 
+  resources :banks 
+end 
+
+resources :clients
+   
  
  
   get "welcome/index"

@@ -16,7 +16,7 @@ class ServicesController < ApplicationController
     @user = User.find(params[:user_id])
     @invoice = @user.invoices.find(params[:invoice_id])
     @service = @invoice.services.create(service_params)
-
+    redirect_to user_invoice_path(@user, @invoice)
     # redirect_to user_invoice_notes_path(@invoice)
   end
 
@@ -24,6 +24,7 @@ class ServicesController < ApplicationController
 	  	@user = User.find(params[:user_id])
 	    @invoice = @user.invoices.find(params[:invoice_id])
 		@service = @invoice.services.find(params[:id])
+
 
 	end 
 
@@ -40,7 +41,7 @@ class ServicesController < ApplicationController
 		 @service = @invoice.services.find(params[:id])
 		 @service.update(service_params)
 		 
-		 render 'show'
+		 redirect_to user_invoice_path(@user, @invoice)
 	end
 
 
@@ -53,7 +54,7 @@ def destroy
      @service = @invoice.services.find(params[:id])
     @service.destroy 
 
-   redirect_to user_invoice_services_path(@user , @invoice)
+   redirect_to user_invoice_path(@user, @invoice)
   end 
 
 

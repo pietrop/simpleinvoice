@@ -29,9 +29,9 @@ def update
   @user = User.find(params[:id])
  
   if @user.update(user_params)
-    redirect_to @user
+    redirect_to user_invoice_path(@user, @invoice)
   else
-    render 'edit'
+    redirect_to user_invoice_path(@user, @invoice)
   end
 end
 

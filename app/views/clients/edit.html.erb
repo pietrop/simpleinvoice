@@ -1,0 +1,45 @@
+<div class="well">
+<%= form_for @client do |f| %>
+
+<fieldset>
+  <legend>Edit Client</legend>
+<div class="form-group">
+    <%= f.label :name %><br>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+
+ 
+<div class="form-group">
+    <%= f.label :address %><br>
+    <%= f.text_area :address, class: 'form-control' %>
+  </div>
+ 
+<div class="form-group">
+    <%= f.label :contact_name %><br>
+    <%= f.text_field :contact_name, class: 'form-control' %>
+  </div>
+<div class="form-group">
+    <%= f.label :email %><br>
+    <%= f.text_area :email, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :phone %><br>
+    <%= f.text_area :phone, class: 'form-control' %>
+  </div>
+<div class="form-group">
+    <%= f.label :agency_client %><br>
+    <%= f.text_area :agency_client, class: 'form-control' %>
+  </div>
+
+
+<%= link_to 'Back', clients_path , class: 'btn btn-primary'  %>
+   
+ <%= f.button 'Update' , class: 'btn btn-primary' %>
+
+
+
+<% end %>
+</fieldset>
+</div>
+
+</div>

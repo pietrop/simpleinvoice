@@ -11,30 +11,47 @@ class InvoicesController < ApplicationController
     # end
   end 
 
-
   def new 
     @user = User.find(params[:user_id])
      @invoice = @user.invoices.build(params[:invoice])
+     @current_user_client = @user.clients
+     
+   
+     
   end 
 
 	def create
     @user = User.find(params[:user_id])
+    
+    @client = Client.find_or_create_by(name: params[:client])
+    #params[:invoice]=create({:number=>params[:number],:date=>params[:date:]})
     @invoice = @user.invoices.create(params[:invoice].permit(:number, :date))
+
+    @invoice.client = @client
+
     redirect_to user_path(@user)
+
+    # find_or_create_by()
+    @invoice.client = @client
+    @invoice.save
+
   end
 
   def show 
       @user = User.find(params[:user_id])
   	 @invoice = @user.invoices.find(params[:id])
+     
+    @services = @invoice.services # to show service on invoice show page
+
+    @client = @invoice.client
+    @bank = @user.bank
   end
-
-
-
-
 
   def edit 
      @user = User.find(params[:user_id])
     @invoice = @user.invoices.find(params[:id])
+
+
   end 
 
   def update

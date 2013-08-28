@@ -1,14 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <title>Simpleinvoice</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="assets/js/bootstrap-dropdown.js"></script>
 </head>
 <body>
 
-<%= yield %>
+<!-- 	Cosmo Nav bar -->
+
+<div class="navbar navbar-default">
+                <div class="container">
+                  <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">Simple Invoice</a>
+                  </div>
+                  <div class="navbar-collapse collapse navbar-responsive-collapse">
+                    <ul class="nav navbar-nav">
+                      <li><%= link_to 'Clients', clients_path %></li>
+                      <li><%= link_to 'Invoices', user_invoices_path(@user) %></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sign in <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="#">Profile</a></li>
+                          <li><a href="#">Bank Details</a></li>
+                          <li class="divider"></li>
+                          <li><a href="#">Separated link</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div><!-- /.nav-collapse -->
+                </div><!-- /.container -->
+              </div>
+<!-- End of 	Cosmo Nav bar -->
+
+	
+
+
+
+	<div class="container">
+
+
+
+
+			<%= yield %>
+
+	</div>
+
+
 
 </body>
 </html>
