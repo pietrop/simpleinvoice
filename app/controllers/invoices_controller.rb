@@ -1,7 +1,9 @@
 class InvoicesController < ApplicationController
+
   def index
     @user = current_user
      @invoices = @user.invoices
+    # @services = @invoice.services
     # @client = Client.find(params[:client_id])
 
     # if @user
@@ -22,8 +24,7 @@ class InvoicesController < ApplicationController
 
 	def create
     @user = current_user
-    
-    @client = Client.find_or_create_by(name: params[:client])
+
     #params[:invoice]=create({:number=>params[:number],:date=>params[:date:]})
     @invoice = @user.invoices.create(params[:invoice].permit(:number, :date))
 
@@ -32,16 +33,23 @@ class InvoicesController < ApplicationController
     # redirect_to 'root'
 
     # find_or_create_by()
-    @invoice.client = @client
     @invoice.user = @user
+    @client = params[:client].blank? ? nil : Client.find_or_create_by(name: params[:client])
+
+    @invoice.client = @client
     
-    @invoice.save
-
-    render 'show'
-
+    if @client && @invoice.save
+      redirect_to invoices_path(@user)
+    else
+      if !@client
+        @invoice.errors.add(:client, " can't be blank") if params[:client].blank?
+      end
+      render 'new'
+    end
   end
 
   def show 
+    @body_class = 'invoice'
      @user = current_user
   	 @invoice = @user.invoices.find(params[:id])
      
@@ -79,7 +87,7 @@ def destroy
  private
 
     def invoice_params
-      params.require(:invoice).permit(:number, :date)
+      params.require(:invoice).permit(:number, :date, :paid)
     end
 
 end

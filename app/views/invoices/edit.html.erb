@@ -12,6 +12,14 @@
     <%= f.label :date %><br>
     <%= f.date_field :date, class: 'form-control' %> </p>
   </div>
+
+
+
+  <div class="form-group">
+    <%= f.label :paid %>
+    <%= f.check_box :paid %>
+   </div>
+
  
  <%= link_to 'Back', invoice_path( @invoice),  class: "btn btn-primary" %>
   <%= f.button 'Update' , class: 'btn btn-primary' %>

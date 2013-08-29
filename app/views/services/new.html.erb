@@ -1,3 +1,14 @@
+<% if @service.errors.any? %>
+  <div id="error_explanation">
+    <h2 class="text-danger"><%= pluralize(@service.errors.count, "error") %> prohibited this service from being saved:</h2>
+ 
+    <ul>
+    <% @service.errors.full_messages.each do |msg| %>
+      <li class="text-danger"><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
 
 
 <div class="well">
@@ -17,10 +28,7 @@
   <div class="form-group">
     <%= f.select :unit_type, options_for_select([['Per Day', 'pd'],['Per Week', 'pw'],['Per Month', 'pm'],['Per Hour', 'ph'] ]), {}, class: 'form-control'  %>
 
-
   </div>
-
-
 
   <div class="form-group">
     <%= f.label :rate %><br>

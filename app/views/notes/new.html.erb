@@ -1,3 +1,17 @@
+<% if @note.errors.any? %>
+  <div id="error_explanation">
+    <h2 class="text-danger"><%= pluralize(@note.errors.count, "error") %> prohibited this note from being saved:</h2>
+ 
+    <ul>
+    <% @note.errors.full_messages.each do |msg| %>
+      <li class="text-danger"><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
+
 <div class="well">
 <fieldset>
   <legend>New Note </legend>
@@ -8,6 +22,7 @@
     <%= f.text_area :text , class: 'form-control' %>
     </div>
 
+<%= link_to 'Back', invoice_path( @invoice, @note),  class: "btn btn-primary" %>
  <%= f.button 'Create' , class: 'btn btn-primary' %>
  <% end %>
 </fieldset>

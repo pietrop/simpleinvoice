@@ -16,7 +16,23 @@ class ServicesController < ApplicationController
  	@user = current_user
     @invoice = @user.invoices.find(params[:invoice_id])
     @service = @invoice.services.create(service_params)
-    redirect_to invoice_path(@invoice)
+
+
+
+    if @service.save
+      redirect_to invoice_path(@invoice)
+    else
+      if !@service
+        @service.errors.add(:service, " can't be blank") if params[:service].blank?
+      end
+      render 'new'
+    end
+ 
+
+
+
+
+    
     # redirect_to user_invoice_notes_path(@invoice)
   end
 
@@ -54,7 +70,7 @@ def destroy
      @service = @invoice.services.find(params[:id])
     @service.destroy 
 
-   redirect_to user_invoice_path(@user, @invoice)
+   redirect_to invoice_path( @invoice)
   end 
 
 

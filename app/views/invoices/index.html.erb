@@ -1,10 +1,10 @@
-<h1><%=  @user.name %> invoices</h1>
-<h2>Listing Invoices</h2>
+
+<legend><%=  @user.name %>'s Invoices</legend>
  
  <p>Today is the <%= Time.now.strftime("%d %h %y" ) %></p>
 <table class="table table-hover" >
   <tr class="active">
-    <th>N</th>
+    <th>#</th>
     <th>Date</th>
    
     <th>Client</th>
@@ -26,38 +26,78 @@
     <tr  data-link="invoice_path(invoice)">
       <td><%= link_to invoice.number, invoice_path(invoice) %> </td>
 
-      <% if invoice.date %>
-        <td><%=  link_to invoice.date.strftime("%d %h %y" ), invoice_path(invoice) %></td>
-      <% end %>
-      <% if  invoice.client %>
-      <td><%= link_to invoice.client.name, client_path(@client) %></td>
-  <% end %>
-      <% unless invoice.services.empty? %>
-        <td><%= invoice.services.order("date").first.date.strftime("%d %h %y" ) %></td>
-        <td><%= invoice.services.order("date").last.date.strftime("%d %h %y" ) %></td>
-        <td><%= (invoice.services.count).to_i  %></td>
-        <td><%= invoice.services.first.unit_type %></td>
-        <td>£ <%= invoice.services.first.rate   %></td>
-        <td>£ <strong> <%= invoice.services.sum(:rate) %></strong></td>
-      <% end %>
+      <td> <% if invoice.date %>
+       <%=  link_to invoice.date.strftime("%d %h %y" ), invoice_path(invoice) %>
+      <% end %></td>
 
-      <% if invoice.date %>
-        <td><%= (invoice.date + 1.month).strftime("%d %h %y" ) %></ </td>
-      <% end %>
+      <td> <% if  invoice.client %>
+     <%= link_to invoice.client.name, client_path(invoice.client) %>  <% end %></td>
 
-      <% unless invoice.notes.empty? %>
-        <td><%= invoice.notes.last.text.split(" ").first(4).join(" ") %> ...</td>
-      <% end %>
+      
+        <td><% unless invoice.services.empty? %>
+          <%= invoice.services.order("date").first.date.strftime("%d %h %y" ) %>
+          <% end %> </td>
+       
+        <td>
+          <% unless invoice.services.empty? %>
+          <%= invoice.services.order("date").last.date.strftime("%d %h %y" ) %>
+          <% end %></td>
+        
+        <td>
+          <% unless invoice.services.empty? %>
+          <%= (invoice.services.count).to_i  %>
+          <% end %> </td>
+       
+         <td>
+          <% unless invoice.services.empty? %>
+          <%= invoice.services.first.unit_type %> 
+          <% end %></td>
+        
+        <td>
+          <% unless invoice.services.empty? %>
+          £ <%= invoice.services.first.rate   %>
+        <% end %></td>
 
-       <td>Status</td>
+        <td>
+        <% unless invoice.services.empty? %>
+          £ <strong> <%= invoice.services.sum(:rate) %></strong>
+        <% end %></td>
+      
+
+        <td>   <% if invoice.date %>
+        <%= (invoice.date + 1.month).strftime("%d %h %y" ) %> 
+      <% end %></td>
+
+      <td> <% unless invoice.notes.empty? %>
+       <%= invoice.notes.last.text.split(" ").first(4).join(" ") %> 
+     
+
+ <% if invoice.notes.last.text.split(" ").count > 4 %>
+    <%= link_to '  . . .', invoice_note_path( invoice, @note) %>
+      <% end %>
+ <% end %>
+
+
+
+    </td>
+
+       <td>
+        <% if invoice.status == 'Paid' %>
+          <strong class='text-success'> <%= invoice.status %></strong>
+        <% elsif invoice.status == 'Unpaid' %>
+          <strong class='text-warning'> <%= invoice.status %></strong>
+        <% else invoice.status == 'Overdue' %>
+          <strong class='text-danger'> <%= invoice.status %></strong>
+        <% end %>
+       </td>
       
       <td><%= link_to 'Delete', invoice_path(invoice),
                     method: :delete, data: { confirm: 'Are you sure?' } %></td>
   
   
-  </tr>
-    </tr>
   <% end %>
+    </tr>
+  
 </table>
 
 

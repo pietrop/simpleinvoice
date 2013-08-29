@@ -22,9 +22,16 @@
     <p><strong>Created:</strong> <%= note.created_at.strftime("%d %h '%y at %H:%M" ) %>   
     <strong>Updated:</strong> <%= note.updated_at.strftime("%d %h '%y at %H:%M" ) %></p>
     
-       <p> <%= note.text %> <br></p>
-        
-        <%= link_to 'Show ' , invoice_note_path( @invoice, note) %>
+       <p> <%= note.text.capitalize.split(" ").first(200).join(" ") %> 
+
+        <% if note.text.split(" ").count > 200 %>
+        <p class="text-primary"><strong> <%= link_to '. . . ' , invoice_note_path( @invoice, note) %></strong></p></p>
+        <% else %>
+
+        <% end %>
+
+
+        <br></p>
        
        <%= link_to 'Edit ', edit_invoice_note_path(@invoice, note) %> 
               
@@ -39,3 +46,5 @@
   <% end %>
 
 </table>
+
+ <%= link_to 'Back', invoice_path( @invoice, @note),  class: "btn btn-primary" %>

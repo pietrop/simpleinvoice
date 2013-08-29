@@ -8,7 +8,7 @@
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script src="assets/js/bootstrap-dropdown.js"></script>
 </head>
-<body>
+<body class='<%= @body_class %>'>
 
 <!-- 	Cosmo Nav bar -->
 
@@ -24,19 +24,24 @@
                   </div>
                   <div class="navbar-collapse collapse navbar-responsive-collapse">
                     <ul class="nav navbar-nav">
-                      <li><%= link_to 'Clients', clients_path %></li>
+                      
                       <li><%= link_to 'Invoices', invoices_path %></li>
+                      <li><%= link_to 'Clients', clients_path %></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sign in <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                          <li><a href="#">Profile</a></li>
-                          <li><a href="#">Bank Details</a></li>
-                          <li class="divider"></li>
-                          <li><a href="#">Separated link</a></li>
-                        </ul>
-                      </li>
+                         <ul class="nav navbar-nav">
+                          <% unless  @user = current_user %>
+                        <li><%= link_to 'Sign In', new_user_session_path %></li>
+                        <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+                        <% else %>
+                        <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+                        <% end %>
+                         </ul>
+
+
+
+
+
                     </ul>
                   </div><!-- /.nav-collapse -->
                 </div><!-- /.container -->
@@ -48,14 +53,18 @@
 
 
 	<div class="container">
-<div class="row-fluid">
+
+    <% if notice %>
      <p class="notice"><%= notice %></p>
+    <% end %>
+
+    <% if alert %>
      <p class="alert"><%= alert %></p>
+    <% end %>
 
 
 			<%= yield %>
 
-	</div>
 </div>
 
 

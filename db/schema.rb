@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130828151632) do
+ActiveRecord::Schema.define(version: 20130829134922) do
 
   create_table "banks", force: true do |t|
     t.string   "sort_code"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20130828151632) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "client_id"
+    t.boolean  "paid",       default: false
   end
 
   add_index "invoices", ["client_id"], name: "index_invoices_on_client_id"

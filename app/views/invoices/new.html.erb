@@ -1,3 +1,14 @@
+<% if @invoice.errors.any? %>
+  <div id="error_explanation">
+    <h2 class="text-danger"><%= pluralize(@invoice.errors.count, "error") %> prohibited this invoice from being saved:</h2>
+ 
+    <ul>
+    <% @invoice.errors.full_messages.each do |msg| %>
+      <li class="text-danger"><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
 
 <div class="well">
 <fieldset>
@@ -16,6 +27,11 @@
     <%= f.label :client %><br>
     <%= text_field_tag :client, nil, placeholder: 'Search or create a client', class: 'form-control' %>
   </div>
+
+
+
+
+
 
 
 <!--   <%= f.collection_select(:client_id, Client.all, :id, :name) %> -->

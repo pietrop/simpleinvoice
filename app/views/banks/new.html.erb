@@ -1,3 +1,16 @@
+<% if @bank.errors.any? %>
+  <div id="error_explanation">
+    <h2 class="text-danger"><%= pluralize(@bank.errors.count, "error") %> prohibited this bank from being saved:</h2>
+ 
+    <ul>
+    <% @bank.errors.full_messages.each do |msg| %>
+      <li class="text-danger"><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
 
 
 <div class="well">
@@ -20,6 +33,7 @@
 
  <%= link_to 'Back', invoice_path( @invoice),  class: "btn btn-primary" %>
   <%= f.button 'Create' , class: 'btn btn-primary' %>
+
 
  <% end %>
 </fieldset>

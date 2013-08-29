@@ -8,7 +8,9 @@ Simpleinvoice::Application.routes.draw do
   end 
   resources :banks 
 
-  resources :clients
+  resources :clients do 
+    resources :invoices
+  end 
    
  
  

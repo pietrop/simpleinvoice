@@ -1,5 +1,5 @@
-<h1>Listing Clients</h1>
- 
+<legend><%=  @user.name %>'s Clients</legend>
+ <p>Today is the <%= Time.now.strftime("%d %h %y" ) %></p>
 <table class="table table-hover" >
   <tr>
     <th>Name</th>
@@ -10,18 +10,18 @@
     <th>Agency's Client</th>
     <th></th>
     <th></th>
-    <th></th>
+   
   </tr>
  
   <% @clients.each do |client| %>
     <tr>
-      <td><%= client.name %></td>
+      <td><%= link_to client.name, client_path(client) %></td>
       <td><%= client.address %></td>
       <td><%= client.contact_name %></td>
        <td><%= client.email %></td>
        <td><%= client.phone %></td>
        <td><%= client.agency_client %></td>
-        <td><%= link_to 'Show', client_path(client) %></td>
+       
     <td><%= link_to 'Edit', edit_client_path(client) %></td>
     <td><%= link_to 'Delete', client_path(client),
                     method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -32,4 +32,3 @@
 
 <%= link_to 'Back', root_path,  class: "btn btn-primary" %>
 
-<%= link_to 'New Client', new_client_path,  class: "btn btn-primary" %>

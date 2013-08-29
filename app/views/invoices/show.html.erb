@@ -1,219 +1,249 @@
-
-<div class="row-fluid">
-  <div class="span6 offset2">
-
-<h1>Invoice</h1>
-  </div>
-
-  </div>
+<!-- INVOICE HEADER -->
+<div class="well invoice-main">
 
 
+<div class="wrapper">
+       <div class="ribbon-wrapper-green"><div class="ribbon-green <%= @invoice.status.downcase %>">
+        <p><%= @invoice.status %></p>
 
 
-<p>
-  <strong>Invoice Number:</strong>
-  <%= @invoice.number %> 
-</p>
- 
-<p>
-  <strong>Date:</strong>
-  <%= @invoice.date %>
-</p>
+       </div></div>
+</div>
 
-<%= link_to 'Edit', edit_invoice_path(@invoice) %>
-<!-- end of Invoice details -->
-<hr>
-<!-- CLIENT details -->
-<div>
-<h3 class="text-muted">Client Details</h3>
 
-  <% if @invoice.client %>
-  <address><strong><%= @invoice.client.name %></strong> <br>   
-    <%= @invoice.client.address %></p> <br>   
-    <abbr title="Phone">P:</abbr> <%= @invoice.client.phone %><br>
-    <abbr title="Email">@:</abbr> <a href="mailto: <%= @invoice.client.email %>"> <%= @invoice.client.email %></a>
-</address>
-
-<address>
-  Contact Name: <br>
-  <strong><%= @invoice.client.contact_name %></strong>
-</address>
+<div class="row">
   
-  <address>
-  <p><strong>Agency Client:</strong>   
-    <%= @invoice.client.agency_client %><br>
-    <small>*optional</small></p>
-</address>
-
-<%= link_to 'Edit', edit_client_path(@client) %>
 
 
-    <!-- edit link  -->
-  <% else %>
-    <p>No clients on this invoice yet, ad or create a new one</p>
-  <!--   new link  -->
-  <% end %>
+  <div class="col-xs-6 col-md-4"></div>
+  <div class="col-xs-6 col-md-4"><h1>Invoice</h1></div>
+  <div class="col-xs-6 col-md-4"></div>
+
+             
 
 </div>
-<!-- end of client details -->
+<!-- IN DETAILS -->
+<div class="row">
+  <div class="col-xs-12 col-md-8">
+          <p>
+        <strong>Invoice Number:</strong>
+        <%= @invoice.number %> 
+      </p>
+     
+      <p>
+        <strong>Date:</strong>
+        <%= @invoice.date %>  
+      </p>
 
-<hr>
-<!-- USER details  -->
-<h3 class="text-muted"> <%= @user.name %>'s Details </h3>
-<div>
-  <p>
-    <strong>Name:</strong>
-    <%= @user.name %>  <%= @user.last_name %>
-  </p>
-  <p>
-    <strong>Address:</strong>
-    <%= @user.address %>
-  </p>
-  <p>
-    <strong>Phone:</strong>
-    <%= @user.phone %>
-  </p>
-  <p>
-    <strong>e-mail:</strong>
-    <%= @user.email %>
-  </p>
-  <%= link_to 'Edit',  edit_user_path(@user) %>
+      <%= link_to 'Edit', edit_invoice_path(@invoice), class: "btn btn-primary btn-xs" %>
+      <!-- end of Invoice details -->
+    </br>
+    </br>
+
+       <h3 class="text-muted">Client Details</h3>
+
+      <% if @invoice.client %>
+      <address><strong><%= @invoice.client.name %></strong> <br>   
+        <%= @invoice.client.address %></p> <br>   
+        <abbr title="Phone">P:</abbr> <%= @invoice.client.phone %><br>
+        <abbr title="Email">@:</abbr> <a href="mailto: <%= @invoice.client.email %>"> <%= @invoice.client.email %></a>
+    </address>
+
+    <address>
+      Contact Name: <br>
+      <strong><%= @invoice.client.contact_name %></strong>
+    </address>
+      
+      <address>
+      <p><strong>Agency Client:</strong>   
+        <%= @invoice.client.agency_client %><br>
+        <small>*optional</small></p>
+    </address>
+
+    <%= link_to 'Edit', edit_client_path(@client), class: "btn btn-primary btn-xs" %>
+
+
+        <!-- edit link  -->
+      <% else %>
+        <p>No clients on this invoice yet, ad or create a new one</p>
+      <!--   new link  -->
+      <% end %>
+
+    <!-- end of CLIENT details -->
+
+  </div>
+  <div class="col-xs-6 col-md-4">
+
+       <h3 class="text-muted"> <%= @user.name %>'s Details </h3>
+        
+          <p>
+            <strong>Name:</strong>
+            <%= @user.name %>  <%= @user.last_name %>
+          </p>
+          <p>
+            <strong>Address:</strong>
+            <%= @user.address %>
+          </p>
+          <p>
+            <strong>Phone:</strong>
+            <%= @user.phone %>
+          </p>
+          <p>
+            <strong>e-mail:</strong>
+            <%= @user.email %>
+          </p>
+          <%= link_to 'Edit',  edit_user_path(@user), class: "btn btn-primary btn-xs" %>
+          <!-- USER details  -->
+
+
+  </div>
 </div>
 
 
-<!-- end of user details  -->
-<hr>
-<!-- services -->
 
-<div>
-	<h3 class="text-muted">Services</h3>
-    <% if @invoice.services.empty? %>
 
-       <% else %>
+<!-- SERVICES -->
+<div class="row">
 
-      	<p>Proving <%= @invoice.services.first.description %> services
-          <% if @client && @client.agency_client %>
-            for <%= @client.agency_client %>
+  <div class="col-xs-12 col-md-12">
+        <h3 class="text-muted">Services</h3>
+          <% if @invoice.services.empty? %>
+
+             <% else %>
+
+              <p>Proving <%= @invoice.services.first.description %> services
+                <% if @client && @client.agency_client %>
+                  for <%= @client.agency_client %>
+                <% end %>
+              as follow:</p>
+              <table  class="table table-hover" >
+                <tr>
+                  <th>Date</th>
+                  <th>Description</th>
+                  <th>Unit</th>
+                  <th>Rate</th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              <%  @invoice.services.each do |service| %>
+               <tr>
+              <td><%= service.date.strftime("%d %h %y" ) %></td>
+              <td><%= service.description %></td>
+              <td><%= service.unit_type %></td>
+              <td>£ <%= service.rate %></td>
+              
+              <td><%= link_to 'Edit',  edit_invoice_service_path( @invoice, service ), class: "btn btn-primary btn-xs"  %></td>
+               <td><%= link_to 'Delete', invoice_service_path( @invoice, service), class: "btn btn btn-danger btn-xs" ,
+                                method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+                </tr>
+               
+                <% end %>
+                <td></td>
+                <td></td>
+                <td></td>
+                  <td><strong>£ <%= @invoice.services.sum(:rate)   %></strong></td>
+                <td></td>
+                <td></td>
+              </table>
+
+            <% end %> <!-- end for if and else -->
+      <%= link_to 'New Service',  new_invoice_service_path( @invoice, @service ), class: "btn btn-primary btn-xs" %></td>
+
+      <!-- end of services -->
+  </div>
+  <div class="col-xs-6 col-md-4"></div>
+</div>
+
+
+
+<!-- BANK DETAILS -->
+<div class="row">
+  <div class="col-xs-6">
+          <h3 class="text-muted">Bank Details</h3>
+            <% unless @bank %>  <!-- unless, = unless bank false, then do, so it has to be true, opposite of if -->
+              No bank accounts, start by creating a 
+            <% else %>
+
+            <p>Payment terms:  21 days net</p>
+            <p>Payment details:  </p>
+             
+              <p> <strong>Account Name:</strong> <%= @invoice.bank.account_name.capitalize  %></p>
+
+              <p><strong>Sort code: </strong><%= @invoice.bank.sort_code  %></p>
+
+              <p> <strong>Account Number: </strong> <%= @invoice.bank.account_number  %></p>
+
+              <%= link_to 'Edit',  edit_bank_path( @bank), class: "btn btn-primary btn-xs" %>
+
+
           <% end %>
-        as follow:</p>
-      	<table  class="table table-hover" >
-      	  <tr>
-      	    <th>Date</th>
-      	    <th>Description</th>
-            <th>Unit</th>
-      	    <th>Rate</th>
-      	    <th></th>
-      	    <th></th>
-            <th></th>
-      	  </tr>
-      	<%  @invoice.services.each do |service| %>
-      	 <tr>
-      	<td><%= service.date.strftime("%d %h %y" ) %></td>
-      	<td><%= service.description %></td>
-        <td><%= service.unit_type %></td>
-      	<td>£ <%= service.rate %></td>
-        
-      	<td><%= link_to 'Edit',  edit_invoice_service_path( @invoice, service ) %></td>
-      	 <td><%= link_to 'Delete', invoice_service_path( @invoice, service),
-                          method: :delete, data: { confirm: 'Are you sure?' } %></td>
 
-      	  </tr>
-        
-          
-      	  <% end %>
-          <td></td>
-          <td></td>
-          <td></td>
-            <td><strong>£ <%= @invoice.services.sum(:rate)   %></strong></td>
-          <td></td>
-          <td></td>
-      	</table>
-
-      <% end %> <!-- end for if and else -->
+          <% unless @bank %>
+            <%= link_to 'New Bank Account',  new_bank_path, class: "btn btn-primary btn-xs" %>
+          <% end %>
 
 
-<%= link_to 'New Service',  new_invoice_service_path( @invoice, @service ) %></td>
+          <!--end of  Bank details -->
+
+  </div>
+  <div class="col-xs-6"></div>
 </div>
 
-<!-- end of services -->
 <hr>
-<!-- Bank details -->
-<div>
- <h3 class="text-muted">Bank Details</h3>
-  <% unless @bank %>  <!-- unless, = unless bank false, then do, so it has to be true, opposite of if -->
-    No bank accounts, start by creating a 
-  <% else %>
-
-  <p>Payment terms:  21 days net</p>
-  <p>Payment details:  </p>
-   
-    <p> <strong>Account Name:</strong> <%= @invoice.bank.account_name.capitalize  %></p>
-
-    <p><strong>Sort code: </strong><%= @invoice.bank.sort_code  %></p>
-
-    <p> <strong>Account Number: </strong> <%= @invoice.bank.account_number  %></p>
-
-    <%= link_to 'Edit',  edit_bank_path( @bank) %>
-
-<% end %>
-<%= link_to 'New Bank Account',  new_bank_path %>
+<!-- NOTES -->
+<div class="row">
+  <div class="col-xs-12">
+          <!-- Notes  -->
+          <h3 class="text-muted">Notes</h3>  
+          <table  class="table table-hover">
+            <tr>
+              <th>Notes</th>
+              <th>Created</th>
+              <th>Updated</th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+           
+            <% @invoice.notes.each do |note| %>
+              <tr>
+                <td><%= link_to note.text.capitalize.split(" ").first(10).join(" "), invoice_note_path( @invoice, note) %>  
 
 
+<% if note.text.split(" ").count > 4 %>
+    <%= link_to ' . . .', invoice_note_path( @invoice, note) %>
+      <% end %>
 
 
 
-</div>
-<!--end of  Bank details -->
-<hr>
-<!-- Notes  -->
+                </td>
+                <td><%= note.created_at.strftime("%d %h '%y" ) %></td>
+                <td><%= note.updated_at.strftime("%d %h %y" ) %></td>
+                  <td><%= link_to 'Edit', edit_invoice_note_path( @invoice, note), class: "btn btn btn-primary btn-xs" %></td>
+                   <td><%= link_to 'Delete', invoice_note_path( @invoice, note), class: "btn btn btn-danger btn-xs",
+                              method: :delete, data: { confirm: 'Are you sure?' } %></td>
+             
+              </tr>
+            <% end %>
+          </table>
 
-<h3 class="text-muted">Notes</h3>
+          <%= link_to 'New Note',  new_invoice_note_path(@invoice), class: "btn btn-primary btn-xs" %>
 
+          <%= link_to 'View All Notes',  invoice_notes_path(@invoice), class: "btn btn-primary btn-xs" %>
 
-  
-<table  class="table table-hover">
-  <tr>
-    <th>Notes</th>
-    <th>Created</th>
-    <th>Updated</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+  </div>
  
-  <% @invoice.notes.each do |note| %>
-    <tr>
-      <td><%= note.text.capitalize.split(" ").first(10).join(" ") %> ... </td>
-      <td><%= note.created_at.strftime("%d %h '%y" ) %></td>
-      <td><%= note.updated_at.strftime("%d %h %y" ) %></td>
-
-
-      <td><%= link_to 'Show', invoice_note_path( @invoice, note) %></td>
-        <td><%= link_to 'Edit', edit_invoice_note_path( @invoice, note) %></td>
-         <td><%= link_to 'Delete', invoice_note_path( @invoice, note),
-                    method: :delete, data: { confirm: 'Are you sure?' } %></td>
-   
-    </tr>
-  <% end %>
-</table>
-
-<%= link_to 'New Note',  new_invoice_note_path(@invoice) %>
-
-<%= link_to 'View All Notes',  invoice_notes_path(@invoice) %>
-
-</br>
-
 </div>
-
 <hr>
+
 <%= link_to 'Back To Invoices', invoices_path( @invoice),  class: "btn btn-primary" %>
 
-
-<!-- end -->
-
+</div>
 
 
 
-  
 
-
+</div>
+</div>

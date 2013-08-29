@@ -20,7 +20,16 @@ end
     @note = @invoice.notes.create(note_params)
 
 
- redirect_to user_invoice_path(@user, @invoice)
+ if @note.save
+      redirect_to invoice_path(@invoice)
+    else
+      if !@note
+        @note.errors.add(:note, " can't be blank") if params[:text].blank?
+      end
+      render 'new'
+    end
+
+ 
     # redirect_to user_invoice_notes_path(@invoice)
   end
 

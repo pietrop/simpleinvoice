@@ -3,10 +3,100 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+body.invoice {
+	background: #f5f5f5;
+}
 
+.invoice-main {
+	background: #fff;
+}
 
 #invoice_client_id {
 	
 	 width: 100px;
 }
 
+.well {
+	
+	position: relative;
+}
+
+.ribbon-wrapper-green {
+  width: 85px;
+  height: 88px;
+  overflow: hidden;
+  position: absolute;
+  top: -7px;
+  right: -5px;
+}
+
+.ribbon-green {
+  font: bold 15px Sans-Serif;
+  color: #333;
+  text-align: center;
+  -webkit-transform: rotate(45deg);
+  -moz-transform:    rotate(45deg);
+  -ms-transform:     rotate(45deg);
+  -o-transform:      rotate(45deg);
+  position: relative;
+  padding: 4px 0;
+  left: -5px;
+  top: 15px;
+  width: 120px;
+
+  color: #333;
+  -webkit-box-shadow: 0px 0px 3px rgba(0,0,0,0.3);
+  -moz-box-shadow:    0px 0px 3px rgba(0,0,0,0.3);
+  box-shadow:         0px 0px 3px rgba(0,0,0,0.3);
+
+  &.paid {
+      background-color: #BFDC7A;
+	  background-image: -webkit-gradient(linear, left top, left bottom, from(#BFDC7A), to(#8EBF45)); 
+	  background-image: -webkit-linear-gradient(top, #BFDC7A, #8EBF45); 
+	  background-image:    -moz-linear-gradient(top, #BFDC7A, #8EBF45); 
+	  background-image:     -ms-linear-gradient(top, #BFDC7A, #8EBF45); 
+	  background-image:      -o-linear-gradient(top, #BFDC7A, #8EBF45); 
+  }
+
+    &.overdue {
+background: #f85032; /* Old browsers */
+background: -moz-linear-gradient(top, #f85032 0%, #f85032 20%, #f02f17 70%, #e73827 99%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f85032), color-stop(20%,#f85032), color-stop(70%,#f02f17), color-stop(99%,#e73827)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, #f85032 0%,#f85032 20%,#f02f17 70%,#e73827 99%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, #f85032 0%,#f85032 20%,#f02f17 70%,#e73827 99%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, #f85032 0%,#f85032 20%,#f02f17 70%,#e73827 99%); /* IE10+ */
+background: linear-gradient(to bottom, #f85032 0%,#f85032 20%,#f02f17 70%,#e73827 99%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f85032', endColorstr='#e73827',GradientType=0 ); /* IE6-9 */
+	
+
+  }
+
+
+  &.unpaid {
+	background: #feccb1; /* Old browsers */
+background: -moz-linear-gradient(top, #feccb1 0%, #f17432 0%, #ea5507 17%, #fb955e 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#feccb1), color-stop(0%,#f17432), color-stop(17%,#ea5507), color-stop(100%,#fb955e)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, #feccb1 0%,#f17432 0%,#ea5507 17%,#fb955e 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, #feccb1 0%,#f17432 0%,#ea5507 17%,#fb955e 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, #feccb1 0%,#f17432 0%,#ea5507 17%,#fb955e 100%); /* IE10+ */
+background: linear-gradient(to bottom, #feccb1 0%,#f17432 0%,#ea5507 17%,#fb955e 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feccb1', endColorstr='#fb955e',GradientType=0 ); /* IE6-9 */
+
+  }
+}
+
+.ribbon-green:before, .ribbon-green:after {
+  content: "";
+  border-top:   3px solid #6e8900;   
+  border-left:  3px solid transparent;
+  border-right: 3px solid transparent;
+  position:absolute;
+  bottom: -3px;
+}
+
+.ribbon-green:before {
+  left: 0;
+}
+.ribbon-green:after {
+  right: 0;
+}

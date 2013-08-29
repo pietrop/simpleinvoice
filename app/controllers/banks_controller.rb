@@ -9,13 +9,34 @@ class BanksController < ApplicationController
 	def new 
 		@user = current_user
 		@bank = @user.build_bank(params[:bank])
+    @current_user_bank = @current_user.bank
 
 	end 
 
 		def create
     @user = current_user
     @bank = @user.create_bank(params[:bank].permit(:sort_code, :account_name , :account_number))
-    redirect_to invoice_path( @invoice)
+    
+    @bank.user = @user
+
+
+
+    
+
+
+if @bank.save
+      @client = Client.find_or_create_by(name: params[:client])
+      @bank.user = @user
+
+      redirect_to invoice_path( @invoice)
+    else
+      # @bank.errors.add(:client, " can't be blank") if params[:client].blank?
+      render 'new'
+    end
+
+
+
+
   end
 
 
