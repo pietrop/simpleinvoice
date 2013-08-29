@@ -227,9 +227,7 @@ table {
   a:visited {
     text-decoration: underline;
   }
-  a[href]:after {
-    content: " (" attr(href) ")";
-  }
+ 
   abbr[title]:after {
     content: " (" attr(title) ")";
   }
@@ -6158,6 +6156,8 @@ body.modal-open,
   }
 }
 
+
+
 .tooltip {
   position: absolute;
   z-index: 1030;
@@ -7229,7 +7229,45 @@ td.visible-print {
   td.hidden-print {
     display: none !important;
   }
+
+
+  .well {
+  border-style: none;
+  }
+
+  .ribbon-wrapper-green {
+  display: none;
+  }
+
+  h3 {
+  display: none;
+  }
+
+  .btn {
+  display: none;
+  }
+
+abbr  {
+  display: none;
+  }
+
+hr {
+  display: none;
+  }
+
+  .notes {
+  display: none;
+  }
+
+small  {
+  display: none;
+  }
+
+a   { text-decoration:underline; }
+
 }
+
+
 
 .btn {
   border: none;

@@ -1,8 +1,8 @@
 <!-- INVOICE HEADER -->
-<div class="well invoice-main">
+<div class="well invoice-main" >
 
 
-<div class="wrapper">
+<div class="wrapper" >
        <div class="ribbon-wrapper-green"><div class="ribbon-green <%= @invoice.status.downcase %>">
         <p><%= @invoice.status %></p>
 
@@ -55,9 +55,9 @@
     </address>
       
       <address>
-      <p><strong>Agency Client:</strong>   
+      <small><strong>Agency Client:</strong>   
         <%= @invoice.client.agency_client %><br>
-        <small>*optional</small></p>
+        <small>*optional</small></small>
     </address>
 
     <%= link_to 'Edit', edit_client_path(@client), class: "btn btn-primary btn-xs" %>
@@ -193,7 +193,9 @@
 
 <hr>
 <!-- NOTES -->
-<div class="row">
+
+<div  class="notes">
+<div class="row" >
   <div class="col-xs-12">
           <!-- Notes  -->
           <h3 class="text-muted">Notes</h3>  
@@ -243,7 +245,7 @@
 </div>
 
 
-
+</div>
 
 </div>
 </div>
