@@ -1,7 +1,15 @@
 
-<!-- INVOICE details -->
+<div class="row-fluid">
+  <div class="span6 offset2">
 
 <h1>Invoice</h1>
+  </div>
+
+  </div>
+
+
+
+
 <p>
   <strong>Invoice Number:</strong>
   <%= @invoice.number %> 
@@ -194,7 +202,18 @@
 <%= link_to 'View All Notes',  invoice_notes_path(@invoice) %>
 
 </br>
+
+</div>
+
 <hr>
 <%= link_to 'Back To Invoices', invoices_path( @invoice),  class: "btn btn-primary" %>
+
+
+<!-- end -->
+
+
+
+
+  
 
 

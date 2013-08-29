@@ -20,18 +20,17 @@
     <th>Last Note</th>
     <th>Status</th>
     <th></th>
-    <th></th>
-    <th></th>
+
   </tr>
   <% @invoices.each do |invoice| %>
-    <tr>
-      <td><%= invoice.number %> </td>
+    <tr  data-link="invoice_path(invoice)">
+      <td><%= link_to invoice.number, invoice_path(invoice) %> </td>
 
       <% if invoice.date %>
-        <td><%= invoice.date.strftime("%d %h %y" ) %></td>
+        <td><%=  link_to invoice.date.strftime("%d %h %y" ), invoice_path(invoice) %></td>
       <% end %>
       <% if  invoice.client %>
-      <td><%= invoice.client.name %></td>
+      <td><%= link_to invoice.client.name, client_path(@client) %></td>
   <% end %>
       <% unless invoice.services.empty? %>
         <td><%= invoice.services.order("date").first.date.strftime("%d %h %y" ) %></td>
@@ -51,11 +50,10 @@
       <% end %>
 
        <td>Status</td>
-
-      <td><%= link_to 'Show', invoice_path(invoice) %></td>
-      <td><%= link_to 'Edit', edit_invoice_path(invoice) %></td>
+      
       <td><%= link_to 'Delete', invoice_path(invoice),
                     method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  
   
   </tr>
     </tr>
