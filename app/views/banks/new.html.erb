@@ -4,7 +4,7 @@
 <fieldset>
   <legend>New Bank </legend>
   <small>*if you already have registered bank details this will override the existing onece, you can only have one bank details per account</small>
-<%= form_for [@user , @bank] do |f| %>
+<%= form_for  (@bank) do |f| %>
  <p>
     <%= f.label :account_name %><br>
     <%= f.text_field :account_name, class: 'form-control' %> </p>
@@ -18,7 +18,7 @@
     <%= f.text_field :account_number, class: 'form-control' %> </p>
 
 
- <%= link_to 'Back', user_invoice_path(@user, @invoice),  class: "btn btn-primary" %>
+ <%= link_to 'Back', invoice_path( @invoice),  class: "btn btn-primary" %>
   <%= f.button 'Create' , class: 'btn btn-primary' %>
 
  <% end %>

@@ -1,6 +1,7 @@
 Simpleinvoice::Application.routes.draw do
 
   devise_for :users
+  resources :users, :only => [:edit, :update]
   resources :invoices do 
     resources :notes
     resources :services

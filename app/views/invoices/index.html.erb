@@ -30,8 +30,9 @@
       <% if invoice.date %>
         <td><%= invoice.date.strftime("%d %h %y" ) %></td>
       <% end %>
+      <% if  invoice.client %>
       <td><%= invoice.client.name %></td>
-
+  <% end %>
       <% unless invoice.services.empty? %>
         <td><%= invoice.services.order("date").first.date.strftime("%d %h %y" ) %></td>
         <td><%= invoice.services.order("date").last.date.strftime("%d %h %y" ) %></td>

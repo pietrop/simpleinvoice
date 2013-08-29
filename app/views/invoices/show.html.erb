@@ -12,7 +12,7 @@
   <%= @invoice.date %>
 </p>
 
-<%= link_to 'Edit', edit_user_invoice_path(@user, @invoice) %>
+<%= link_to 'Edit', edit_invoice_path(@invoice) %>
 <!-- end of Invoice details -->
 <hr>
 <!-- CLIENT details -->
@@ -51,15 +51,15 @@
 
 <hr>
 <!-- USER details  -->
-<h3 class="text-muted"> <%= @user.name.capitalize %>'s Details </h3>
+<h3 class="text-muted"> <%= @user.name %>'s Details </h3>
 <div>
   <p>
     <strong>Name:</strong>
-    <%= @user.name.capitalize %>  <%= @user.last_name.capitalize %>
+    <%= @user.name %>  <%= @user.last_name %>
   </p>
   <p>
     <strong>Address:</strong>
-    <%= @user.address.capitalize %>
+    <%= @user.address %>
   </p>
   <p>
     <strong>Phone:</strong>
@@ -69,7 +69,7 @@
     <strong>e-mail:</strong>
     <%= @user.email %>
   </p>
-  <%= link_to 'Edit',  edit_user_path(@user ) %>
+  <%= link_to 'Edit',  edit_user_path(@user) %>
 </div>
 
 
@@ -83,7 +83,7 @@
 
        <% else %>
 
-      	<p>Proving <%= @services.first.description %> services
+      	<p>Proving <%= @invoice.services.first.description %> services
           <% if @client && @client.agency_client %>
             for <%= @client.agency_client %>
           <% end %>
@@ -98,15 +98,15 @@
       	    <th></th>
             <th></th>
       	  </tr>
-      	<% @services.each do |service| %>
+      	<%  @invoice.services.each do |service| %>
       	 <tr>
       	<td><%= service.date.strftime("%d %h %y" ) %></td>
       	<td><%= service.description %></td>
         <td><%= service.unit_type %></td>
       	<td>£ <%= service.rate %></td>
-        <!-- <td><%= link_to 'Show',  user_invoice_service_path(@user, @invoice, service ) %></td> -->
-      	<td><%= link_to 'Edit',  edit_user_invoice_service_path(@user, @invoice, service ) %></td>
-      	 <td><%= link_to 'Delete', user_invoice_service_path(@user, @invoice, service),
+        
+      	<td><%= link_to 'Edit',  edit_invoice_service_path( @invoice, service ) %></td>
+      	 <td><%= link_to 'Delete', invoice_service_path( @invoice, service),
                           method: :delete, data: { confirm: 'Are you sure?' } %></td>
 
       	  </tr>
@@ -124,7 +124,7 @@
       <% end %> <!-- end for if and else -->
 
 
-<%= link_to 'New Service',  new_user_invoice_service_path(@user, @invoice, @service ) %></td>
+<%= link_to 'New Service',  new_invoice_service_path( @invoice, @service ) %></td>
 </div>
 
 <!-- end of services -->
@@ -145,10 +145,10 @@
 
     <p> <strong>Account Number: </strong> <%= @invoice.bank.account_number  %></p>
 
-    <%= link_to 'Edit',  edit_user_bank_path(@user, @bank) %>
+    <%= link_to 'Edit',  edit_bank_path( @bank) %>
 
 <% end %>
-<%= link_to 'New Bank Account',  new_user_bank_path(@user) %>
+<%= link_to 'New Bank Account',  new_bank_path %>
 
 
 
@@ -180,19 +180,21 @@
       <td><%= note.updated_at.strftime("%d %h %y" ) %></td>
 
 
-      <td><%= link_to 'Show', user_invoice_note_path(@user, @invoice, note) %></td>
-        <td><%= link_to 'Edit', edit_user_invoice_note_path(@user, @invoice, note) %></td>
-         <td><%= link_to 'Delete', user_invoice_note_path(@user, @invoice, note),
+      <td><%= link_to 'Show', invoice_note_path( @invoice, note) %></td>
+        <td><%= link_to 'Edit', edit_invoice_note_path( @invoice, note) %></td>
+         <td><%= link_to 'Delete', invoice_note_path( @invoice, note),
                     method: :delete, data: { confirm: 'Are you sure?' } %></td>
    
     </tr>
   <% end %>
 </table>
 
-<%= link_to 'New Note',  new_user_invoice_note_path(@user, @invoice) %></td>
+<%= link_to 'New Note',  new_invoice_note_path(@invoice) %>
+
+<%= link_to 'View All Notes',  invoice_notes_path(@invoice) %>
 
 </br>
 <hr>
-<%= link_to 'Back To Invoices', user_invoices_path(@user, @invoice),  class: "btn btn-primary" %>
+<%= link_to 'Back To Invoices', invoices_path( @invoice),  class: "btn btn-primary" %>
 
 

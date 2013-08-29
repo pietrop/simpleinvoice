@@ -32,3 +32,65 @@
 
 <%= link_to 'Back', clients_path( @client ) ,  class: "btn btn-primary" %>
 <%= link_to 'Edit', edit_client_path(@client) ,  class: "btn btn-primary"  %>
+
+
+
+<table class="table table-hover" >
+  <tr class="active">
+    <th>N</th>
+    <th>Date</th>
+   
+    <th>Client</th>
+    <th>Start</th>
+    <th>End</th>
+    <th>Days</th>
+    <th>Unit</th>
+    <th>Rate</th>
+    <th>Total</th>
+    <th>Due on</th>
+     
+
+    <th>Last Note</th>
+    <th>Status</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  <% @client.invoices.each do |invoice| %>
+    <tr>
+      <td><%= invoice.number %> </td>
+
+      <% if invoice.date %>
+        <td><%= invoice.date.strftime("%d %h %y" ) %></td>
+      <% end %>
+      <% if  invoice.client %>
+      <td><%= invoice.client.name %></td>
+  <% end %>
+      <% unless invoice.services.empty? %>
+        <td><%= invoice.services.order("date").first.date.strftime("%d %h %y" ) %></td>
+        <td><%= invoice.services.order("date").last.date.strftime("%d %h %y" ) %></td>
+        <td><%= (invoice.services.count).to_i  %></td>
+        <td><%= invoice.services.first.unit_type %></td>
+        <td>£ <%= invoice.services.first.rate   %></td>
+        <td>£ <strong> <%= invoice.services.sum(:rate) %></strong></td>
+      <% end %>
+
+      <% if invoice.date %>
+        <td><%= (invoice.date + 1.month).strftime("%d %h %y" ) %></ </td>
+      <% end %>
+
+      <% unless invoice.notes.empty? %>
+        <td><%= invoice.notes.last.text.split(" ").first(4).join(" ") %> ...</td>
+      <% end %>
+
+       <td>Status</td>
+
+      <td><%= link_to 'Show', invoice_path(invoice) %></td>
+      <td><%= link_to 'Edit', edit_invoice_path(invoice) %></td>
+      <td><%= link_to 'Delete', invoice_path(invoice),
+                    method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  
+  </tr>
+    </tr>
+  <% end %>
+</table>

@@ -37,10 +37,12 @@ class InvoicesController < ApplicationController
     
     @invoice.save
 
+    render 'show'
+
   end
 
   def show 
-      @user = User.find(params[:user_id])
+     @user = current_user
   	 @invoice = @user.invoices.find(params[:id])
      
     @services = @invoice.services # to show service on invoice show page
@@ -50,14 +52,14 @@ class InvoicesController < ApplicationController
   end
 
   def edit 
-     @user = User.find(params[:user_id])
+     @user = current_user
     @invoice = @user.invoices.find(params[:id])
 
 
   end 
 
   def update
-  @user = User.find(params[:user_id])
+  @user = current_user
  @invoice = @user.invoices.find(params[:id])
  @invoice.update(invoice_params)
  render 'show'
@@ -67,11 +69,11 @@ end
 #not sure if delete works
 def destroy 
 
-@user = User.find(params[:user_id])
+    @user = current_user
     @invoice = @user.invoices.find(params[:id])
     @invoice.destroy 
 
-   redirect_to user_invoices_path(@user)
+   redirect_to invoices_path(@user)
   end 
 
  private

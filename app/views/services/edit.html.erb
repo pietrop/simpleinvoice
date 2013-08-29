@@ -4,7 +4,7 @@
 <fieldset>
   <legend>Edit Service </legend>
 
-<%= form_for [@user , @invoice, @service] do |f| %>
+<%= form_for [ @invoice, @service] do |f| %>
   <div class="form-group">
     <%= f.label :date %><br>
     <%= f.date_field :date , class: 'form-control' %>
@@ -24,7 +24,7 @@
 </div>
 
 
- <%= link_to 'Back', user_invoice_path(@user, @invoice),  class: "btn btn-primary" %>
+ <%= link_to 'Back', invoice_path( @invoice),  class: "btn btn-primary" %>
   <%= f.button 'Update' , class: 'btn btn-primary' %>
 
  <% end %>

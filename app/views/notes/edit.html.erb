@@ -9,14 +9,14 @@
 <fieldset>
   <legend>Edit Note </legend>
 
-<%= form_for [@user , @invoice, @note] do |f| %>
+<%= form_for [ @invoice, @note] do |f| %>
   <div class="form-group">
     <%= f.label :note %><br>
     <%= f.text_area :text, class: 'form-control' %>
    </div>
 
- <%= link_to 'Back', user_invoice_path(@user, @invoice),  class: "btn btn-primary" %>
-  <%= f.button 'Create' , class: 'btn btn-primary' %>
+ <%= link_to 'Back', invoice_path( @invoice, @note),  class: "btn btn-primary" %>
+  <%= f.button 'Update' , class: 'btn btn-primary' %>
 
  <% end %>
 </fieldset>

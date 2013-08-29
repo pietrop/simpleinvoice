@@ -3,7 +3,7 @@
 <div class="well">
 <fieldset>
   <legend>Bank Account </legend>
-<%= form_for [@user , @bank] do |f| %>
+<%= form_for ( @bank) do |f| %>
   <div class="form-group">
     <%= f.label :account_name %><br>
     <%= f.text_field :account_name, class: 'form-control' %>
@@ -19,7 +19,7 @@
   </div>
 
  
- <%= link_to 'Back', user_invoice_path(@user, @invoice),  class: "btn btn-primary" %>
+ <%= link_to 'Back', invoice_path( @invoice),  class: "btn btn-primary" %>
   <%= f.button 'Update' , class: 'btn btn-primary' %>
 
  <% end %>

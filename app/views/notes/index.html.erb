@@ -1,9 +1,10 @@
-<h1><%=  @user.name.capitalize %> <%= @invoice.number %> </h1>
-<h2>Listing Invoice Notes</h2>
- 
+<h1>Notes</h1>
+<p><%=  @user.name.capitalize %>'s Notes for Invoice Number <%= @invoice.number %> for <%= @invoice.client.name.capitalize %> on <%= @invoice.date.strftime("%d %h %y" ) %> </p>
+<hr>
+
 <table>
   <tr>
-    <th>Text</th>
+    <th></th>
     <th></th>
     <th></th>
     <th></th>
@@ -11,14 +12,30 @@
  
   <% @notes.each do |note| %>
     <tr>
-      <td><%= note.text %> </td>
+      <td>
 
-      <td><%= link_to 'Show', user_invoice_note_path(@user, @invoice, note) %></td>
-        <td><%= link_to 'Edit', edit_user_invoice_note_path(@user, @invoice, note) %></td>
-         <td><%= link_to 'Delete', user_invoice_note_path(@user, @invoice, note),
-                    method: :delete, data: { confirm: 'Are you sure?' } %></td>
-   
-    </tr>
+      </td>
+
+      <td>
+        </td>
+
+    <p><strong>Created:</strong> <%= note.created_at.strftime("%d %h '%y at %H:%M" ) %>   
+    <strong>Updated:</strong> <%= note.updated_at.strftime("%d %h '%y at %H:%M" ) %></p>
+    
+       <p> <%= note.text %> <br></p>
+        
+        <%= link_to 'Show ' , invoice_note_path( @invoice, note) %>
+       
+       <%= link_to 'Edit ', edit_invoice_note_path(@invoice, note) %> 
+              
+        <%= link_to 'Delete ' , invoice_note_path( @invoice, note),
+                    method: :delete, data: { confirm: 'Are you sure?' } %> <br>
+                  </td>
+                  <td>  </td>
+
+       </tr>
+ <hr>
+
   <% end %>
-</table>
 
+</table>
