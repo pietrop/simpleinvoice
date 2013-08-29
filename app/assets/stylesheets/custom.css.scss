@@ -2197,7 +2197,9 @@ fieldset[disabled] .btn-default.active {
   color: #ffffff;
   background-color: #007fff;
   border-color: #007fff;
+
 }
+
 
 .btn-primary:hover,
 .btn-primary:focus,
@@ -5242,7 +5244,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
   white-space: nowrap;
   vertical-align: baseline;
   background-color: #999999;
-  border-radius: 10px;
+  border-radius: 0;
 }
 
 .badge:empty {
@@ -5291,7 +5293,7 @@ a.list-group-item.active > .badge,
 }
 
 .container .jumbotron {
-  border-radius: 0;
+  border-radius: 10px;
 }
 
 @media screen and (min-width: 768px) {
@@ -7270,7 +7272,7 @@ a   { text-decoration:underline; }
 
 
 .btn {
-  border: none;
+  border: 10px;
 }
 
 .text-primary {
