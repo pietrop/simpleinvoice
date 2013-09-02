@@ -18,3 +18,9 @@
 .jumbotron p {
 	text-align: center;
 }
+
+
+body.welcome {
+	background: url(<%= image_path('screen.png') %>) no-repeat center center fixed;
+	background-size: cover;
+}
