@@ -22,7 +22,7 @@
     <th></th>
 
   </tr>
-  <% @invoices.each do |invoice| %>
+  <% @invoices.order("number desc").each do |invoice| %>
     <tr  data-link="invoice_path(invoice)">
       <td><%= link_to invoice.number, invoice_path(invoice) %> </td>
 

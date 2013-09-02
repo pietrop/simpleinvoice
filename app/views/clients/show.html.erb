@@ -10,6 +10,7 @@
   <%= @client.phone %>,
   <%= @client.email %>.
   <%= @client.agency_client %><br>
+
 </p>
 <% else %>
 no clients details
@@ -49,7 +50,7 @@ no clients details
     <th></th>
     
   </tr>
-  <% @client.invoices.each do |invoice| %>
+  <% @client.invoices.order("number desc").each do |invoice| %>
     <tr>
       <td><%=  link_to  invoice.number, invoice_path(invoice)  %> </td>
 
@@ -64,6 +65,7 @@ no clients details
         <td><%= invoice.services.first.unit_type %></td>
         <td>£ <%= invoice.services.first.rate   %></td>
         <td>£ <strong> <%= invoice.services.sum(:rate) %></strong></td>
+
       <% else %>
         <% 6.times do %>
         <td> </td>

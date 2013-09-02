@@ -3,6 +3,8 @@ class InvoicesController < ApplicationController
   def index
     @user = current_user
      @invoices = @user.invoices
+
+
     # @services = @invoice.services
     # @client = Client.find(params[:client_id])
 
