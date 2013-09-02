@@ -325,7 +325,7 @@ textarea {
 }
 
 a {
-  color: #007fff;
+  color: none;
   text-decoration: none;
 }
 
@@ -2452,6 +2452,10 @@ fieldset[disabled] .btn-link:focus {
   line-height: 1.5;
   border-radius: 0;
 }
+
+
+
+
 
 .btn-xs {
   padding: 1px 5px;

@@ -4,7 +4,7 @@
 
 <div class="wrapper" >
        <div class="ribbon-wrapper-green"><div class="ribbon-green <%= @invoice.status.downcase %>">
-        <p><%= @invoice.status %></p>
+        <%= link_to @invoice.status, edit_invoice_path(@invoice), class: "btn-status"  %>
 
 
        </div></div>
