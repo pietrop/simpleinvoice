@@ -22,13 +22,20 @@ end
 
 def show
   @client = Client.find(params[:id])
+
+   # @user = current_user 
+   # @clients = @user.clients
+  # @client = Client.find(params[:id])
+
+  # @client = @user.clients.find(params[:invoice_id])
  
   
 end
 
 
 def edit
-  @client = Client.find(params[:id])
+@client = Client.find(params[:id])
+
 end
  
 def update
@@ -40,6 +47,7 @@ def update
     render 'edit'
   end
 end
+
 
 def destroy
   @client = Client.find(params[:id])

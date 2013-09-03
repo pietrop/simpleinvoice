@@ -1,7 +1,7 @@
 <h1>Note</h1>
 
 
-<p><%=  @user.name.capitalize %>'s Note for Invoice Number <%= @invoice.number %> for <%= @invoice.client.name.capitalize %> on <%= @invoice.date.strftime("%d %h %y" ) %> </p>
+<p><%=  @user.name.capitalize %>'s Note for Invoice Number <strong><%= @invoice.number %></strong> for <strong><%= @client.name.capitalize %></strong> on <strong><%= @invoice.date.strftime("%d %h %y" ) %></strong> </p>
 <p>Today is the <%= Time.now.strftime("%d %h %y - %H:%M" ) %></p>
     <p><strong>Created:</strong> <td><%= @note.created_at.strftime("%d %h '%y at %H:%M" ) %></br>
      <strong> Updated:</strong> <td><%= @note.updated_at.strftime("%d %h '%y at %H:%M"  ) %></p>

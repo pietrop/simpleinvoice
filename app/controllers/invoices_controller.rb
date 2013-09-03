@@ -41,7 +41,7 @@ class InvoicesController < ApplicationController
     @invoice.client = @client
     
     if @client && @invoice.save
-      redirect_to invoice_path(@user, @invoice)
+      redirect_to invoices_path(@user, @invoice)
     else
       if !@client
         @invoice.errors.add(:client, " can't be blank") if params[:client].blank?
@@ -56,7 +56,6 @@ class InvoicesController < ApplicationController
   	 @invoice = @user.invoices.find(params[:id])
      
     @services = @invoice.services # to show service on invoice show page
-
     @client = @invoice.client
     @bank = @user.bank
   end

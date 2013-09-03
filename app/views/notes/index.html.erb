@@ -1,5 +1,5 @@
 <h1>Notes</h1>
-<p><%=  @user.name.capitalize %>'s Notes for Invoice Number <%= @invoice.number %> for <%= @invoice.client.name.capitalize %> on <%= @invoice.date.strftime("%d %h %y" ) %> </p>
+<p><%=  @user.name.capitalize %>'s Notes for Invoice Number <strong><%= @invoice.number %></strong> for <strong><%= @client.name.capitalize %></strong> on <strong><%= @invoice.date.strftime("%d %h %y" ) %></strong> </p>
 <hr>
 
 <table>

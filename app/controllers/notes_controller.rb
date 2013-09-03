@@ -3,8 +3,9 @@ class NotesController < ApplicationController
 def index 
   	@user = current_user
 		@invoice = @user.invoices.find(params[:invoice_id])
-     
+    
 		@notes = @invoice.notes 
+    @client = @invoice.client
   end 
 
 def new
@@ -37,7 +38,9 @@ end
   def show
    	@user = current_user
     @invoice = @user.invoices.find(params[:invoice_id])
-	@note = @invoice.notes.find(params[:id])
+	  @note = @invoice.notes.find(params[:id])
+    @client = @invoice.client
+
   end 
 
    def edit 
