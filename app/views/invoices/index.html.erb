@@ -2,6 +2,15 @@
 <legend><%=  @user.name %>'s Invoices</legend>
  
  <p>Today is the <%= Time.now.strftime("%d %h %y" ) %></p>
+
+
+<p>
+  Download:
+  <%= link_to "CSV", invoices_path(format: "csv") %> 
+  
+</p>
+
+
 <table class="table table-hover" >
   <tr class="active">
     <th>#</th>

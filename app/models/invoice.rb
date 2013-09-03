@@ -13,6 +13,19 @@ class Invoice < ActiveRecord::Base
   validates :date, presence: true
   # validates :client_id, presence: :true
 
+def self.to_csv
+  CSV.generate do |csv|
+    csv << column_names
+    all.each do |invoice|
+      csv << invoice.attributes.values_at(*column_names)
+    end
+  end
+end
+
+
+
+
+
   def status
     if paid == false && (1.month.ago > date)
       'Overdue'
