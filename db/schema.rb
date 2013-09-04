@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130829134922) do
+ActiveRecord::Schema.define(version: 20130904172055) do
 
   create_table "banks", force: true do |t|
     t.string   "sort_code"
     t.string   "account_name"
-    t.integer  "account_number"
+    t.string   "account_number"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
