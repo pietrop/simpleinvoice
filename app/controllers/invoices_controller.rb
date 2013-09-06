@@ -1,24 +1,16 @@
 class InvoicesController < ApplicationController
-respond_to  :csv 
-
+respond_to :html, :json
   def index
     @user = current_user
      @invoices = @user.invoices.order(:number)
-     def get_csv
-  respond_with do |format|
-   
+     
+
+#CSV file
+  respond_to do |format|
+    format.html
     format.csv { send_data @invoices.to_csv }
     
   end
-
-end 
-     
-  end 
-
-
-#CSV file
-
-
 
 
     # @services = @invoice.services
@@ -29,7 +21,7 @@ end
     # elsif @client
     #   @invoices = @client.invoices
     # end
-
+  end 
 
   def new 
     @user = current_user
