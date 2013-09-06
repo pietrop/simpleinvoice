@@ -4,6 +4,7 @@ class ClientsController < ApplicationController
 		
     @user = current_user
     @clients = @user.clients
+     
 	end 
 
 	def new
