@@ -3,9 +3,6 @@ respond_to :html, :json
   def index
     @user = current_user
      @invoices = @user.invoices.order(:number)
-     
-
-#CSV file
   respond_to do |format|
     format.html
     format.csv { send_data @invoices.to_csv }
@@ -49,7 +46,7 @@ respond_to :html, :json
     @invoice.client = @client
     
     if @client && @invoice.save
-      redirect_to invoices_path(@user, @invoice)
+      redirect_to invoices_path
     else
       if !@client
         @invoice.errors.add(:client, " can't be blank") if params[:client].blank?
