@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130904172055) do
+ActiveRecord::Schema.define(version: 20130906202121) do
 
   create_table "banks", force: true do |t|
     t.string   "sort_code"
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 20130904172055) do
   create_table "services", force: true do |t|
     t.date     "date"
     t.string   "description"
-    t.integer  "rate"
+    t.decimal  "rate",        precision: 8, scale: 2
     t.integer  "invoice_id"
     t.datetime "created_at"
     t.datetime "updated_at"

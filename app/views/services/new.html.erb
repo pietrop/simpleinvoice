@@ -17,16 +17,16 @@
 <%= form_for [ @invoice, @service] do |f| %>
  <div class="form-group">
     <%= f.label :date %><br>
-    <%= f.date_field :date, class: 'form-control' %>
+    <%= f.date_field :date, placeholder:"dd/mm/yyyy", class: 'form-control' %>
   </div>
  <div class="form-group">
     <%= f.label :description %><br>
-    <%= f.text_field :description, class: 'form-control' %>
+    <%= f.text_field :description, placeholder:"i.e. Research", class: 'form-control' %>
   </div>
-  
+
 
   <div class="form-group">
-    <%= f.select :unit_type, options_for_select([['Per Day', 'pd'],['Per Week', 'pw'],['Per Month', 'pm'],['Per Hour', 'ph'] ]), {}, class: 'form-control'  %>
+    <%= f.select :unit_type, options_for_select([['Per Day', 'pd'],['Per Week', 'pw'],['Per Month', 'pm'],['Per Hour', 'ph'] , ['Allow', 'allow'] ]), {}, class: 'form-control'  %>
 
   </div>
 
