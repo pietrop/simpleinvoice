@@ -6,7 +6,7 @@ respond_to :html, :json
   respond_to do |format|
     format.html
     format.csv { send_data @invoices.to_csv, filename:  "#{current_user.name.capitalize}_#{current_user.last_name.capitalize}_Invoices_#{Time.now.strftime("%d%h'%y_%H-%M")}_SimpleInvoiceExport.csv" }
-    format.xls { send_data @invoices.to_csv,filename: "#{current_user.name.capitalize}_#{current_user.last_name.capitalize}_Invoices_#{Time.now.strftime("%d%h'%y_%H-%M")}_SimpleInvoiceExport.xls"}
+    format.xls #{ send_data @invoices.to_csv,filename: "#{current_user.name.capitalize}_#{current_user.last_name.capitalize}_Invoices_#{Time.now.strftime("%d%h'%y_%H-%M")}_SimpleInvoiceExport.xls"}
     # { send_data @products.to_csv(col_sep: "\t")  }
 
   end
