@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+       <Cell><Data ss:Type="String">Number</Data></Cell>
+        <Cell><Data ss:Type="String">Date</Data></Cell>
+        <Cell><Data ss:Type="String">Client </Data></Cell>
+        
+
+        <Cell><Data ss:Type="String">Start</Data></Cell>
+        <Cell><Data ss:Type="String">End</Data></Cell>
+        <Cell><Data ss:Type="String">Days </Data></Cell>
+       <Cell><Data ss:Type="String">Unit</Data></Cell>
+        <Cell><Data ss:Type="String">Rate</Data></Cell>
+        <Cell><Data ss:Type="String">Total </Data></Cell>
+        <Cell><Data ss:Type="String">Due on </Data></Cell>
+        <Cell><Data ss:Type="String">Notes </Data></Cell>
+        <Cell><Data ss:Type="String">Status </Data></Cell>
+        <Cell><Data ss:Type="String">Excell Export date </Data></Cell>
+
+      </Row>
+    <% @invoices.each do |invoice| %>
+      <Row>
+        <Cell><Data ss:Type="Number"><%= invoice.number %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= invoice.date.strftime("%d %h '%y" )%></Data></Cell>
+        <Cell><Data ss:Type="String"><%= invoice.client.name %></Data></Cell>
+       
+
+       <Cell><Data ss:Type="String"><%= if !invoice.services.empty? then invoice.services.order("date").first.date.strftime("%d %h %y" ) end   %></Data></Cell>
+      <Cell><Data ss:Type="String"><%=  if !invoice.services.empty? then invoice.services.order("date").last.date.strftime("%d %h %y" ) end %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= if !invoice.services.empty? then (invoice.services.count).to_i  end  %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= if !invoice.services.empty? then invoice.services.first.unit_type end %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= if !invoice.services.empty? then invoice.services.first.rate end %></Data></Cell>
+     <Cell><Data ss:Type="String"><%=   if !invoice.services.empty? then invoice.services.sum(:rate) end %></Data></Cell>
+     <Cell><Data ss:Type="String"><%=  if invoice.date  then (invoice.date + 1.month).strftime("%d %h %y" ) end %></Data></Cell>
+     <Cell><Data ss:Type="String"><%=   if  !invoice.notes.empty?  then invoice.notes.last.text.split(" ").first(5).join(" ")end  %></Data></Cell>
+     <Cell><Data ss:Type="String"><%=   invoice.status %></Data></Cell>
+     <Cell><Data ss:Type="String"><%= Time.now.strftime("%d %h %y" ) %></Data></Cell>
+
+
+
+
+      
+       # days 
+       ,#unit 
+       , #Rate
+      , #total
+      , #invoice date due
+     ,    #alast note 
+     ,   #status
+      #export date
+
+      </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>
