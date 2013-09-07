@@ -17,7 +17,7 @@
 <%= form_for [ @invoice, @service] do |f| %>
  <div class="form-group">
     <%= f.label :date %><br>
-    <%= f.date_field :date, placeholder:"dd/mm/yyyy", class: 'form-control' %>
+    <%= f.date_field :date, placeholder:"#{Time.now.strftime("%d/%m/%Y" )}", class: 'form-control' %>
   </div>
  <div class="form-group">
     <%= f.label :description %><br>

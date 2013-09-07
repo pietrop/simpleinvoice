@@ -89,8 +89,8 @@ def destroy
     @invoice = @user.invoices.find(params[:id])
     @invoice.destroy 
 
-   redirect_to invoices_path(@user)
-  end 
+   redirect_to invoices_path 
+    end 
 
  private
 

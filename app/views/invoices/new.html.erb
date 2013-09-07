@@ -17,15 +17,25 @@
 
   <div class="form-group">
     <%= f.label :number %><br>
-    <%= f.text_field :number, placeholder:"#{Invoice.first.number + 1 }", class: 'form-control' %>
+    <%= f.text_field :number, placeholder:"#{if @user.invoices.first.number.nil? then 1 else @user.invoices.first.number + 1   end  }", class: 'form-control' %>
+
+
+
+   
+
+
+
   </div>
  <div class="form-group">
     <%= f.label :date %><br>
     <%= f.date_field :date, placeholder:"#{Time.now.strftime("%d/%m/%Y" )}", class: 'form-control' %> </p>
+   
   </div>
+  
 <div class="form-group">
     <%= f.label :client %><br>
     <%= text_field_tag :client, nil, placeholder: 'Search or create a client', class: 'form-control' %>
+ 
   </div>
 
 
@@ -38,7 +48,7 @@
 
   
 
- <%= link_to 'Back', invoices_path(@user ),  class: "btn btn-primary" %>
+ <%= link_to 'Back', invoices_path,  class: "btn btn-primary" %>
   <%= f.button 'Create', class: 'btn btn-primary' %>
  
 <% end %>

@@ -19,7 +19,7 @@
   <div class="col-xs-6 col-md-4"><h1>Invoice</h1></div>
   <div class="col-xs-6 col-md-4"></div>
 
-    <a href="#" onclick="window.print();return false;">print/save pdf </a>  
+    <a href="#" onclick="window.print();return false;"><small>print/save pdf </small></a>  
   
  
 
@@ -45,7 +45,7 @@
        <h3 class="text-muted">Client Details</h3>
 
       <% if @invoice.client %>
-      <address><strong><%= @invoice.client.name %></strong> <br>   
+      <address><strong><%= @invoice.client.name.capitalize %></strong> <br>   
         <%= @invoice.client.address %></p> <br>   
         <abbr title="Phone">P:</abbr> <%= @invoice.client.phone %><br>
         <abbr title="Email">@:</abbr> <a href="mailto: <%= @invoice.client.email %>"> <%= @invoice.client.email %></a>
@@ -244,7 +244,7 @@
 </div>
 <hr>
 
-<%= link_to 'Back To Invoices', invoices_path( @invoice),  class: "btn btn-primary" %>
+<%= link_to 'Back To Invoices', invoices_path,  class: "btn btn-primary" %>
 
 </div>
 

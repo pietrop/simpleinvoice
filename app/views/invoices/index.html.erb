@@ -40,7 +40,7 @@
       <% end %></td>
 
       <td> <% if  invoice.client %>
-     <%= link_to invoice.client.name, client_path(invoice.client) %>  <% end %></td>
+     <%= link_to invoice.client.name.capitalize, client_path(invoice.client) %>  <% end %></td>
 
       
         <td><% unless invoice.services.empty? %>

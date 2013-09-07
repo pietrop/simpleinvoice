@@ -9,7 +9,9 @@ class Invoice < ActiveRecord::Base
 
 
    default_scope -> { order('created_at DESC') }
-  validates :number,  numericality: { only_integer: true }, uniqueness: true
+  validates :number,  numericality: { only_integer: true }#, uniqueness: true
+    
+
   validates :date, presence: true
   # validates :client_id, presence: :true
 
