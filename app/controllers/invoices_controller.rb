@@ -5,8 +5,9 @@ respond_to :html, :json
      @invoices = @user.invoices.order(:number)
   respond_to do |format|
     format.html
-    format.csv { send_data @invoices.to_csv }
+    format.csv { send_data @invoices.to_csv, filename:  "#{current_user.name.capitalize}_#{current_user.last_name.capitalize}_Invoices_#{Time.now.strftime("%d%h'%y-%H-%M")}_SimpleInvoiceExport.csv" }
     
+
   end
 
 
