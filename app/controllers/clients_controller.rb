@@ -3,7 +3,8 @@ class ClientsController < ApplicationController
 	def index
 		
     @user = current_user
-    @clients = @user.clients #.group(:name)
+    @clients = @user.clients
+     #.group(:name)
 	end 
 
 	def new
