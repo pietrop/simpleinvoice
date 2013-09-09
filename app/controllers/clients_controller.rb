@@ -3,8 +3,7 @@ class ClientsController < ApplicationController
 	def index
 		
     @user = current_user
-    @clients = @user.clients
-     
+    @clients = @user.clients.order(:number)     
 	end 
 
 	def new
