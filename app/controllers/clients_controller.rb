@@ -22,6 +22,8 @@ class ClientsController < ApplicationController
 end
 
 def show
+  @user = current_user
+  @client = @user.client
   @client = Client.find(params[:id])
 
    # @user = current_user 
