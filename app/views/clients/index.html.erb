@@ -12,8 +12,11 @@
     <th></th>
    
   </tr>
- 
-  <% @clients.each do |client| %>
+
+
+
+
+  <% @clients.group(:name).each do |client| %>
     <tr>
       <td><%= link_to client.name.capitalize, client_path(client) %></td>
       <td><%= client.address %></td>
@@ -23,8 +26,7 @@
        <td><%= client.agency_client %></td>
        
     <td><%= link_to 'Edit', edit_client_path(client) %></td>
-    <td><%= link_to 'Delete', client_path(client),
-                    method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    
   </tr>
     </tr>
   <% end %>

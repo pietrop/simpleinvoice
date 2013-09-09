@@ -4,6 +4,10 @@
  <p>Today is the <%= Time.now.strftime("%d %h %y" ) %></p>
 
 
+  <p>Total number of Invoices: <%= @invoices.count %>,  Paid: <%= @invoices.where(paid: true).count %>, 
+ Unpaid: <%= @invoices.where(paid: false).count %>. </p>
+
+ 
 <p>
   Download as 
   <%= link_to "CSV", invoices_path(format: "csv") %> or 
