@@ -22,7 +22,7 @@ end
 
 def show
   @user = current_user
-  @client = @user.client.find(params[:invoice_id])
+  @client = @user.client.find(params[:id])
   # @client = Client.find(params[:id])
 
    # @user = current_user 
