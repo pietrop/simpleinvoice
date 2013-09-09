@@ -3,7 +3,7 @@ class ClientsController < ApplicationController
 	def index
 		
     @user = current_user
-    @clients = @user.clients 
+    @clients = @user.clients.group(:name)
 	end 
 
 	def new
@@ -22,7 +22,7 @@ end
 
 def show
   @user = current_user
-  @client = @user.client.find(params[:id])
+  @client = @user.clients.find(params[:id])
   # @client = Client.find(params[:id])
 
    # @user = current_user 
@@ -36,12 +36,13 @@ end
 
 
 def edit
-@client = Client.find(params[:id])
-
+  @user = current_user
+  @client = @user.clients.find(params[:id])
 end
  
 def update
-  @client = Client.find(params[:id])
+    @user = current_user
+  @client = @user.clients.find(params[:id])
  
   if @client.update(client_params)
     redirect_to @client
@@ -52,7 +53,8 @@ end
 
 
 def destroy
-  @client = Client.find(params[:id])
+  @user = current_user
+  @client = @user.clients.find(params[:id])
   @client.destroy
  
   redirect_to clients_path

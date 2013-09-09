@@ -25,7 +25,8 @@ class BanksController < ApplicationController
 
 
 if @bank.save
-      @client = Client.find_or_create_by(name: params[:client])
+      @user = current_user
+      @client = @user.clients.find_or_create_by(name: params[:client])
       @bank.user = @user
 
       redirect_to invoice_path( @invoice)
