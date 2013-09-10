@@ -16,10 +16,14 @@
 
 
 
-  <% @user.clients.group(:name).each do |client| %>  
+  <% @user.clients.each do |client| %>  
     <tr>
       <td><%= link_to client.name.capitalize, client_path(client) %></td>
-     
+      <td><%= client.address %></td>
+      <td><%= client.contact_name %></td>
+       <td><%= client.email %></td>
+       <td><%= client.phone %></td>
+       <td><%= client.agency_client %></td>
        
     <td><%= link_to 'Edit', edit_client_path(client) %></td>
     
