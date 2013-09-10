@@ -16,7 +16,7 @@
 
 
 
-  <% @clients.each do |client| %>  
+  <% @user.clients.group(:name).each do |client| %>  
     <tr>
       <td><%= link_to client.name.capitalize, client_path(client) %></td>
       <td><%= client.address %></td>
