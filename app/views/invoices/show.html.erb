@@ -125,8 +125,8 @@
           
 
 
-
-              <table  class="table table-hover" >
+            <div class="table-responsive">
+             <table class="table table-hover table-condensed" >
                 <tr>
                   <th>Date</th>
                   <th>Description</th>
@@ -157,7 +157,7 @@
                 <td></td>
                 <td></td>
               </table>
-
+            </div>
             <% end %> <!-- end for if and else -->
       <%= link_to 'New Service',  new_invoice_service_path( @invoice, @service ), class: "btn btn-primary btn-xs" %></td>
 
@@ -209,7 +209,8 @@
   <div class="col-xs-12">
           <!-- Notes  -->
           <h3 class="text-muted">Notes</h3>  
-          <table  class="table table-hover">
+          <div class="table-responsive">
+          <table class="table table-hover table-condensed" >
             <tr>
               <th>Notes</th>
               <th>Created</th>
@@ -240,7 +241,7 @@
               </tr>
             <% end %>
           </table>
-
+          </div>
           <%= link_to 'New Note',  new_invoice_note_path(@invoice), class: "btn btn-primary btn-xs" %>
 
           <%= link_to 'View All Notes',  invoice_notes_path(@invoice), class: "btn btn-primary btn-xs" %>
