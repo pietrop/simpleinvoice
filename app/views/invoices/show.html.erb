@@ -48,7 +48,7 @@
       <address><strong><%= @invoice.client.name.capitalize %></strong> <br>   
         <%= @invoice.client.address %></p> <br>   
         <abbr title="Phone">P:</abbr> <%= @invoice.client.phone %><br>
-        <abbr title="Email">@:</abbr> <a href="mailto: <%= @invoice.client.email %>"> <%= @invoice.client.email %></a>
+        <abbr title="Email">@:</abbr> <a href="mailto: <%= @invoice.client.email %>"> <%= mail_to @invoice.client.email %></a>
     </address>
 
     <address>

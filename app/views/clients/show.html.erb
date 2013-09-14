@@ -6,10 +6,13 @@
  <%= @client.name.capitalize %>, 
   <% if @client.address && @client.contact_name && @client.phone &&  @client.email && @client.agency_client %>
   <%= @client.address.capitalize %> ,
+  <br>
    <%= @client.contact_name %>,
-  <%= @client.phone %>,
-  <%= @client.email %>.
-  <%= @client.agency_client %><br>
+  <%=  @client.phone %>,
+  <%= mail_to @client.email %> .
+    <br>
+  <%= @client.agency_client %>.<br>
+
 
 </p>
 <% else %>
