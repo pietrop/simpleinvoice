@@ -14,9 +14,9 @@
    <%= link_to "Excel", invoices_path(format: "xls"), class: "btn btn-success btn-xs"%>
 </p>
 
-
-<table class="table table-hover" >
-  <tr class="active">
+<div class="table-responsive">
+<table class="table table-hover table-condensed" >
+  <tr class="active" >
     <th>#</th>
     <th>Date</th>
    
@@ -35,8 +35,11 @@
     <th></th>
 
   </tr>
+
+
   <% @invoices.order("number desc").each do |invoice| %>
     <tr  data-link="invoice_path(invoice)">
+
       <td><%= link_to invoice.number, invoice_path(invoice) %> </td>
 
       <td> <% if invoice.date %>
@@ -94,12 +97,12 @@
 
     </td>
 
-       <td>
+       <td >
         <% if invoice.status == 'Paid' %>
-          <strong class='text-success'> <%= invoice.status %></strong>
+          <strong class='text-success' > <%= invoice.status %></strong>
         <% elsif invoice.status == 'Unpaid' %>
           <strong class='text-warning'> <%= invoice.status %></strong>
-        <% else invoice.status == 'Overdue' %>
+        <% else invoice.status == 'Overdue'  %>
           <strong class='text-danger'> <%= invoice.status %></strong>
         <% end %>
        </td>
@@ -112,7 +115,7 @@
     </tr>
   
 </table>
-
+</div>
 
 <%= link_to 'New Invoice', new_invoice_path,  class: "btn btn-primary" %>
 
