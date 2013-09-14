@@ -1,6 +1,8 @@
 <legend><%=  @user.name %>'s Clients</legend>
  <p>Today is the <%= Time.now.strftime("%d %h %y" ) %></p>
-<table class="table table-hover" >
+
+<div class="table-responsive">
+<table class="table table-hover table-condensed" >
   <tr>
     <th>Name</th>
     <th>Address</th>
@@ -31,6 +33,7 @@
     </tr>
   <% end %>
 </table>
+</div>
 
 <%= link_to 'Back', root_path,  class: "btn btn-primary" %>
 
