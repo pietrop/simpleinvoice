@@ -48,7 +48,7 @@ respond_to :html, :json
     @invoice.client = @client
     
     if @client && @invoice.save
-      redirect_to invoices_path
+      redirect_to invoice_path(@invoice)
     else
       if !@client
         @invoice.errors.add(:client, " can't be blank") if params[:client].blank?
@@ -79,6 +79,7 @@ respond_to :html, :json
  @invoice = @user.invoices.find(params[:id])
  @invoice.update(invoice_params)
  render 'show'
+ 
 
 end
 
