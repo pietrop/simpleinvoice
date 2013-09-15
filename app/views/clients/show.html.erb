@@ -1,8 +1,13 @@
 <div class="row">
   <div class="col-xs-12 col-md-12">
+ 
+      
   <p>
   
+
  <legend>All invoices for <%= @client.name.capitalize %> </legend>
+    <div class="row">
+      <div class="col-md-6">
  <%= @client.name.capitalize %>, 
   <% if @client.address && @client.contact_name && @client.phone &&  @client.email && @client.agency_client %>
   <%= @client.address.capitalize %> ,
@@ -14,7 +19,23 @@
   <%= @client.agency_client %><br>
 
 
-</p>
+  </div>
+  <div class="col-md-4">
+
+  <%= image_tag "http://maps.google.com/maps/api/staticmap?size=350x200&sensor=false&zoom=16&markers=#{@client.address}" %>
+
+    </p>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
 <% else %>
 no clients details
 <% end %>
