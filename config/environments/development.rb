@@ -18,7 +18,7 @@ Simpleinvoice::Application.configure do
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.raise_delivery_errors = true 
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
 ActionMailer::Base.smtp_settings = {
@@ -27,8 +27,8 @@ ActionMailer::Base.smtp_settings = {
 :enable_starttls_auto => true, 
 :domain => 'gmail.com',
 :authentication => :plain,
-:user_name => 'pietro.passarelli@gmail.com',
-:password => 'Calamma1!'
+:user_name => ENV["GMAIL_USERNAME"],
+:password => ENV["GMAIL_PASSWORD"]
 }
 
 
