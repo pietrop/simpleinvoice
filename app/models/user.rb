@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable,
+  # 
   # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :confirmable, :token_authenticatable, 
          :recoverable, :rememberable, :trackable, :validatable
 	has_many :invoices #, dependant: :destroy
 	#  has_many :notes , :through :invoices
@@ -20,7 +20,8 @@ class User < ActiveRecord::Base
   validates :last_name, presence: true
   validates :address, presence: true
   validates :email, presence: true
-  validates_format_of :email,:with => Devise.email_regexp
+ 
+
   validates :phone, presence: true, numericality: true
 end
 
