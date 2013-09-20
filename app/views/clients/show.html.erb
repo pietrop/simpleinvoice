@@ -8,7 +8,7 @@
  <legend>All invoices for <%= @client.name.capitalize %> </legend>
     <div class="row">
       <div class="col-md-6">
- <%= @client.name.capitalize %>, 
+ <%= @client.name.capitalize %>, <br>
   <% if @client.address && @client.contact_name && @client.phone &&  @client.email && @client.agency_client %>
   <%= @client.address.capitalize %> ,
   <br>
@@ -22,7 +22,7 @@
   </div>
   <div class="col-md-4">
 
-  <%= image_tag "http://maps.google.com/maps/api/staticmap?size=350x200&sensor=false&zoom=15&markers=#{@client.address}" %>
+  <%= image_tag "http://maps.google.com/maps/api/staticmap?size=350x200&sensor=false&zoom=16&markers=#{@client.address}" %>
 
     </p>
   </div>

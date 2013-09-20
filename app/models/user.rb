@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
   validates :last_name, presence: true
   validates :address, presence: true
   validates :email, presence: true
-  validates :phone, presence: true
+  validates_format_of :email,:with => Devise.email_regexp
+  validates :phone, presence: true, numericality: true
 end
 
