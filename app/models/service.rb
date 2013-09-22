@@ -7,5 +7,7 @@ class Service < ActiveRecord::Base
   validates :date, presence: true
   validates :description, presence: :true 
   validates :unit_type, presence: :true 
-  
+ 
+
+
 end
