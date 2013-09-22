@@ -16,7 +16,7 @@
   <%=  @client.phone %>,
 
 
-<% if @client.invoices.order("number desc").last && @client.invoices.order("number desc").last.services.order("date").first %>
+<% if   @client.invoices.where(:paid => false ).last && @client.invoices.where(:paid => true ).last %>
 
   <%= mail_to @client.email, @client.email, :bcc => @user.email,
          :subject => "#{@client.invoices.where(:paid => false ).last.date.strftime("%d %h '%y" )} Invoice number #{@client.invoices.where(:paid => false ).last.number }", :body => "Dear #{@client.contact_name}, \n I'm writing regarding the invoice number #{@client.invoices.where(:paid => false ).last.number }  of the #{@client.invoices.where(:paid => false ).last.date.strftime("%d %h '%y" )}, \n for the period between the #{@client.invoices.where(:paid => false ).last.services.order("date").first.date.strftime("%d %h '%y" )} and the #{@client.invoices.where(:paid => false ).last.services.order("date").last.date.strftime("%d %h '%y" )} . \n \n I was wondering if you could look into weather it is overdue. \n \n  Best \n \n  #{@user.name}"
@@ -66,7 +66,7 @@
 </tr>
 <tr>
   <% if @client.services.average('rate', :conditions => ["unit_type = 'pd'"]) %>
-  <td>Dayily </td> 
+  <td>Daily </td> 
    <td>
     <% if  @client.services.find(:all, :limit => 1, :order => 'rate DESC', :conditions => ["unit_type = 'pd'"]).first %>
 
@@ -123,7 +123,7 @@
 </tr>
 <tr>
    <% if @client.services.average('rate', :conditions => ["unit_type = 'allow'"]) %> 
-  <td>per buyout</td> 
+  <td>buyout</td> 
 
 
    <td>
@@ -162,6 +162,8 @@
     </p>
   </div>
 </div>
+
+
 
 
 <% else %>
