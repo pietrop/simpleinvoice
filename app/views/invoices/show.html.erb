@@ -45,7 +45,11 @@
        <h3 class="text-muted">Client Details</h3>
 
       <% if @invoice.client %>
-      <address><strong><%= @invoice.client.name.capitalize %></strong> <br>   
+      
+
+      <address><strong><%= link_to  @invoice.client.name.capitalize, client_path(@invoice.client) %></strong> <br>  
+
+
         <%= @invoice.client.address %></p> <br>   
         <abbr title="Phone">P:</abbr> <%= @invoice.client.phone %><br>
         <abbr title="Email">@:</abbr> <a href="mailto: <%= @invoice.client.email %>"> <%= mail_to @invoice.client.email %></a>

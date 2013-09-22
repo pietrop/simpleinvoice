@@ -9,17 +9,152 @@
     <div class="row">
       <div class="col-md-6">
  <%= @client.name.capitalize %>, <br>
-  <% if @client.address && @client.contact_name && @client.phone &&  @client.email && @client.agency_client %>
+  <% if @client.address && @client.contact_name && @client.phone &&  @client.email && @client.agency_client  %>
   <%= @client.address.capitalize %> ,
   <br>
    <%= @client.contact_name %>,
   <%=  @client.phone %>,
-  <%= mail_to @client.email %> 
+
+
+<% if @client.invoices.order("number desc").last && @client.invoices.order("number desc").last.services.order("date").first %>
+
+  <%= mail_to @client.email, @client.email, :bcc => @user.email,
+         :subject => "#{@client.invoices.where(:paid => false ).last.date.strftime("%d %h '%y" )} Invoice number #{@client.invoices.where(:paid => false ).last.number }", :body => "Dear #{@client.contact_name}, \n I'm writing regarding the invoice number #{@client.invoices.where(:paid => false ).last.number }  of the #{@client.invoices.where(:paid => false ).last.date.strftime("%d %h '%y" )}, \n for the period between the #{@client.invoices.where(:paid => false ).last.services.order("date").first.date.strftime("%d %h '%y" )} and the #{@client.invoices.where(:paid => false ).last.services.order("date").last.date.strftime("%d %h '%y" )} . \n \n I was wondering if you could look into weather it is overdue. \n \n  Best \n \n  #{@user.name}"
+         %>
     <br>
+
+
+<% else %>
+ <%= mail_to @client.email, @client.email %>
+ <% end %>
+ 
   <%= @client.agency_client %><br>
 
+<br>
 
-  </div>
+<div class="table-responsive">
+<table class="table table-condensed table-hover table-bordered">
+
+  <tr class="active">
+    <th>Rates Statistics </th>
+    <th>Highest</th> 
+     <th>Average</th>
+    <th>Lowest</th>   
+</tr>
+<tr>
+  <% if @client.services.average('rate', :conditions => ["unit_type = 'ph'"]) %>
+  <td>Hourly </td> 
+
+   <td>
+
+<% if @client.services.find(:all, :limit => 1, :order => 'rate DESC', :conditions => ["unit_type = 'ph'"]).first %>
+
+     <%= @client.services.find(:all, :limit => 1, :order => 'rate DESC', :conditions => ["unit_type = 'ph'"]).first.rate %>  
+<% end %>
+
+  </td> 
+  <td> <%= @client.services.average('rate', :conditions => ["unit_type = 'ph'"]) %> </td> 
+   <td> 
+
+<% if @client.services.find(:all, limit: 1, :order => 'rate ASC', :conditions => ["unit_type = 'ph'"]).first %>
+
+
+     <%= @client.services.find(:all, limit: 1, :order => 'rate ASC', :conditions => ["unit_type = 'ph'"]).first.rate %> 
+<% end %>
+     </td> 
+     <% end %>
+</tr>
+<tr>
+  <% if @client.services.average('rate', :conditions => ["unit_type = 'pd'"]) %>
+  <td>Dayily </td> 
+   <td>
+    <% if  @client.services.find(:all, :limit => 1, :order => 'rate DESC', :conditions => ["unit_type = 'pd'"]).first %>
+
+     <%= @client.services.find(:all, :limit => 1, :order => 'rate DESC', :conditions => ["unit_type = 'pd'"]).first.rate %>
+  <% end %>
+
+  </td> 
+  <td>  <%= @client.services.average('rate', :conditions => ["unit_type = 'pd'"]) %></td> 
+   <td> 
+ <% if @client.services.find(:all, limit: 1, :order => 'rate ASC', :conditions => ["unit_type = 'pd'"]).first %>
+     <%= @client.services.find(:all, limit: 1, :order => 'rate ASC', :conditions => ["unit_type = 'pd'"]).first.rate %>
+<% end %>
+
+  </td> 
+  <% end %>
+</tr>
+<tr>
+   <% if @client.services.average('rate', :conditions => ["unit_type = 'pw'"]) %>
+  <td>Weekly</td> 
+   <td>
+<% if  @client.services.find(:all, :limit => 1, :order => 'rate DESC', :conditions => ["unit_type = 'pw'"]).first %>
+
+     <%= @client.services.find(:all, :limit => 1, :order => 'rate DESC', :conditions => ["unit_type = 'pw'"]).first.rate %>  
+<% end %>
+  </td> 
+  <td> <%= @client.services.average('rate', :conditions => ["unit_type = 'pw'"]) %> </td> 
+   <td>
+<% if @client.services.find(:all, limit: 1, :order => 'rate ASC', :conditions => ["unit_type = 'pw'"]).first %>
+
+     <%= @client.services.find(:all, limit: 1, :order => 'rate ASC', :conditions => ["unit_type = 'pw'"]).first.rate %> 
+<% end %>
+
+  </td> 
+  <% end %>
+</tr>
+<tr>
+
+   <% if  @client.services.average('rate', :conditions => ["unit_type = 'pm'"]) %>
+  <td>Monthly</td> 
+   <td> 
+<% if @client.services.find(:all, :limit => 1, :order => 'rate DESC', :conditions => ["unit_type = 'pm'"]).first %>
+     <%= @client.services.find(:all, :limit => 1, :order => 'rate DESC', :conditions => ["unit_type = 'pm'"]).first.rate %> 
+<% end %>
+  </td> 
+  <td>   <%= @client.services.average('rate', :conditions => ["unit_type = 'pm'"]) %> </td> 
+   <td>
+<% if  @client.services.find(:all, limit: 1, :order => 'rate ASC', :conditions => ["unit_type = 'pm'"]).first %>
+    <%= @client.services.find(:all, limit: 1, :order => 'rate ASC', :conditions => ["unit_type = 'pm'"]).first.rate %> 
+<% end %>
+  </td> 
+
+  <% end %>
+
+</tr>
+<tr>
+   <% if @client.services.average('rate', :conditions => ["unit_type = 'allow'"]) %> 
+  <td>per buyout</td> 
+
+
+   <td>
+
+<% if @client.services.find(:all, :limit => 1, :order => 'rate DESC', :conditions => ["unit_type = 'allow'"]).first %>
+     <%= @client.services.find(:all, :limit => 1, :order => 'rate DESC', :conditions => ["unit_type = 'allow'"]).first.rate %>
+<% end %>
+     </td> 
+  <td>  <%= @client.services.average('rate', :conditions => ["unit_type = 'allow'"]) %> </td> 
+   <td>
+<% if @client.services.find(:all, :limit => 1, :order => 'rate ASC', :conditions => ["unit_type = 'allow'"]).first %>
+     <%= @client.services.find(:all, :limit => 1, :order => 'rate ASC', :conditions => ["unit_type = 'allow'"]).first.rate %>
+<% end %>
+     </td> 
+
+       <% end %>
+</tr>
+<tr >
+
+<td colspan="1"></td>
+  <td colspan="3"> <% if @client.services.average('rate') %>
+
+      Calculated on a total of <strong> <%= @client.invoices.count %></strong> Invoices
+<% end %>
+    </td>
+  </tr>
+</table>
+</div>
+
+
+</div>
   <div class="col-md-4">
 
   <%= image_tag "http://maps.google.com/maps/api/staticmap?size=350x200&sensor=false&zoom=16&markers=#{@client.address}" %>
@@ -27,13 +162,6 @@
     </p>
   </div>
 </div>
-
-
-
-
-
-
-
 
 
 <% else %>
