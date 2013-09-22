@@ -31,6 +31,7 @@ def self.to_csv
        if  !invoice.notes.empty?  then invoice.notes.last.text.split(" ").first(5).join(" ")end ,    #alast note 
        invoice.status,   #status
      Time.now.strftime("%d %h %y" )] #export date
+     # @invoices.map{|inv| inv.services.map {|serv| serv.rate}.sum}.sum
     end
   end
 end

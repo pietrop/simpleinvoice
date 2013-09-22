@@ -22,6 +22,7 @@
         <Cell><Data ss:Type="String">Notes </Data></Cell>
         <Cell><Data ss:Type="String">Status </Data></Cell>
         <Cell><Data ss:Type="String">Excell Export date </Data></Cell>
+        <Cell><Data ss:Type="String">Total on Export date </Data></Cell>
 
       </Row>
     <% @invoices.each do |invoice| %>
@@ -41,22 +42,15 @@
      <Cell><Data ss:Type="String"><%=   if  !invoice.notes.empty?  then invoice.notes.last.text.split(" ").first(5).join(" ")end  %></Data></Cell>
      <Cell><Data ss:Type="String"><%=   invoice.status %></Data></Cell>
      <Cell><Data ss:Type="String"><%= Time.now.strftime("%d %h %y" ) %></Data></Cell>
-
-
-
-
-      
-       # days 
-       ,#unit 
-       , #Rate
-      , #total
-      , #invoice date due
-     ,    #alast note 
-     ,   #status
-      #export date
-
+     <Cell><Data ss:Type="String"><%= @invoices.map{|inv| inv.services.map {|serv| serv.rate}.sum}.sum %></Data></Cell>
+     
       </Row>
-    <% end %>
+       <% end %>
+      
+
     </Table>
   </Worksheet>
 </Workbook>
+
+     
+

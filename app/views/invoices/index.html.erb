@@ -1,13 +1,16 @@
 
 <legend><%=  @user.name %>'s Invoices</legend>
  
- <p>Today is the <%= Time.now.strftime("%d %h %y" ) %></p>
+
+ <small><p>Today is the <%= Time.now.strftime("%d %h %y" ) %></p> </small>
 
 
   <p>Total number of Invoices: <%= @invoices.count %>,  Paid: <%= @invoices.where(paid: true).count %>, 
  Unpaid: <%= @invoices.where(paid: false).count %>. </p>
-
  
+
+ Total <strong>£ <%= @invoices.map{|inv| inv.services.map {|serv| serv.rate}.sum}.sum %> </strong>
+
 <p>
   Download 
   <%= link_to "CSV", invoices_path(format: "csv"), class: "btn btn-success btn-xs" %>  
