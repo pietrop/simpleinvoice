@@ -5,8 +5,8 @@
  <small><p>Today is the <%= Time.now.strftime("%d %h %y" ) %></p> </small>
 
 
-  <p>Total number of Invoices: <%= @invoices.count %>,  Paid: <%= @invoices.where(paid: true).count %>, 
- Unpaid: <%= @invoices.where(paid: false).count %>. </p>
+  <p>Total number of Invoices:  <strong><%= @invoices.count %> </strong>,  Paid: <strong> <%= @invoices.where(paid: true).count %> </strong>, 
+ Unpaid: <strong> <%= @invoices.where(paid: false).count %> </strong>. </p>
  
 
  Total <strong>£ <%= @invoices.map{|inv| inv.services.map {|serv| serv.rate}.sum}.sum %> </strong>
@@ -16,6 +16,9 @@
   <%= link_to "CSV", invoices_path(format: "csv"), class: "btn btn-success btn-xs" %>  
    <%= link_to "Excel", invoices_path(format: "xls"), class: "btn btn-success btn-xs"%>
 </p>
+
+
+
 
 <div class="table-responsive">
 <table class="table table-hover table-condensed" >
