@@ -20,11 +20,21 @@
     <%= f.check_box :paid %>
    </div>
 
+
+<div class="field form-group">
+  <%= f.label :tag_list, "Tags" %><br />
+  <%= f.text_field :tag_list, placeholder: 'Tags sepated by commas, ie comapny, clients, project',  class: 'form-control'  %>
+</div>
+
  
  <%= link_to 'Back', invoice_path( @invoice),  class: "btn btn-primary" %>
   <%= f.button 'Update' , class: 'btn btn-primary' %>
 
+
+
  <% end %>
+
+
 </fieldset>
 </div>
 

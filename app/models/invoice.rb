@@ -1,4 +1,6 @@
 class Invoice < ActiveRecord::Base
+  acts_as_taggable
+  
   belongs_to :user
   has_many :notes
   has_many :services
@@ -6,6 +8,8 @@ class Invoice < ActiveRecord::Base
   has_one :bank, through: :user
 
   # has_one :bank, through :user
+
+
 
 
    default_scope -> { order('created_at DESC') }

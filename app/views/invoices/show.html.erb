@@ -13,7 +13,7 @@
 
 <div class="row">
   
-
+Tags: <%= raw @invoice.tag_list.map { |t| link_to t, tag_path(t), class: 'label label-warning' }.join(', ') %>
 
   <div class="col-xs-6 col-md-4"></div>
   <div class="col-xs-6 col-md-4"><h1>Invoice</h1></div>
