@@ -9,15 +9,15 @@ gem 'rails_12factor'
 # # Use sqlite3 as the database for Active Record
 
 
-group :development do
+# group :development do
 	gem 'sqlite3'
- end
+ # end
 
 
+# group :production do
 
-
-	gem 'pg'
-
+gem 'pg'
+#  end
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
