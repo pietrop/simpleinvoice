@@ -18,6 +18,15 @@
 </p>
 
 
+<div id="tag_cloud">
+  Tags:  <%= link_to 'All', invoices_path, class: 'label label-default' %> 
+  <% tag_cloud Invoice.tag_counts, %w[s m l] do |tag, css_class| %>
+    <%= link_to tag.name, tag_path(tag.name), class: 'label label-warning'  %>
+  <% end %>
+
+</div>
+<br>
+
 
 
 <div class="table-responsive">
@@ -27,6 +36,7 @@
     <th>Date</th>
    
     <th>Client</th>
+    <th>Tags</th>
     <th>Start</th>
     <th>End</th>
     <th>Days</th>
@@ -55,10 +65,13 @@
       <td> <% if  invoice.client %>
      <%= link_to invoice.client.name.capitalize, client_path(invoice.client) %>  <% end %></td>
 
+     <td><%= raw invoice.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></td>
+
       
         <td><% unless invoice.services.empty? %>
           <%= invoice.services.order("date").first.date.strftime("%d %h %y" ) %>
           <% end %> </td>
+
        
         <td>
           <% unless invoice.services.empty? %>

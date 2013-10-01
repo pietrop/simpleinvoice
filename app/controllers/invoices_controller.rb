@@ -1,6 +1,12 @@
 class InvoicesController < ApplicationController
 respond_to :html, :json
+
   def index
+
+ 
+
+
+
     @user = current_user
      @invoices = @user.invoices.order(:number)
   respond_to do |format|
@@ -8,6 +14,15 @@ respond_to :html, :json
     format.csv { send_data @invoices.to_csv, filename:  "#{current_user.name.capitalize}_#{current_user.last_name.capitalize}_Invoices_#{Time.now.strftime("%d%h'%y_%H-%M")}_SimpleInvoiceExport.csv" }
     format.xls #{ send_data @invoices.to_csv,filename: "#{current_user.name.capitalize}_#{current_user.last_name.capitalize}_Invoices_#{Time.now.strftime("%d%h'%y_%H-%M")}_SimpleInvoiceExport.xls"}
     # { send_data @products.to_csv(col_sep: "\t")  }
+
+
+if params[:tag]
+    @invoices = @user.invoices.tagged_with(params[:tag])
+  else
+    @invoices = @user.invoices
+  end
+
+
 
   end
 
@@ -97,7 +112,7 @@ def destroy
  private
 
     def invoice_params
-      params.require(:invoice).permit(:number, :date, :paid)
+      params.require(:invoice).permit(:number, :date, :paid,:tag_list)
     end
 
 end

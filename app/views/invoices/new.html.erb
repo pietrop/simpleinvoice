@@ -18,14 +18,11 @@
   <div class="form-group">
     <%= f.label :number %><br>
     <%= f.text_field :number, placeholder:"#{if @user.invoices.first.number.nil? then 1 else @user.invoices.first.number + 1   end  }", class: 'form-control' %>
-
-
-
-   
-
-
-
   </div>
+
+
+
+
  <div class="form-group">
     <%= f.label :date %><br>
     <%= f.date_field :date, placeholder:"#{Time.now.strftime("%d/%m/%Y" )}", class: 'form-control' %> </p>
@@ -39,7 +36,10 @@
   </div>
 
 
-
+<div class="field form-group">
+  <%= f.label :tag_list, "Tags" %><br />
+  <%= f.text_field :tag_list, placeholder: 'Tags sepated by commas, ie comapny, clients, project',  class: 'form-control'  %>
+</div>
 
 
 
