@@ -10,7 +10,7 @@ gem 'rails_12factor'
 
 
 # group :development do
-	# gem 'sqlite3'
+	gem 'sqlite3'
  # end
 
 

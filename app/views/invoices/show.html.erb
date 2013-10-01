@@ -101,6 +101,29 @@ Tags: <%= raw @invoice.tag_list.map { |t| link_to t, tag_path(t), class: 'label 
             <strong>e-mail:</strong>
             <%= @user.email %>
           </p>
+
+          <p>
+            <strong>dob:</strong>
+            <%= @user.dob %>
+          </p>
+
+          <p>
+            <strong>NI:</strong>
+            <%= @user.ni %>
+          </p>
+
+           <p>
+            <strong>Gender:</strong>
+            <%= @user.gender %>
+          </p>
+            <p>
+            <strong>Job Title:</strong>
+            <%= @user.jobtitle %>
+          </p>
+
+        
+
+
           <%= link_to 'Edit',  edit_user_path(@user), class: "btn btn-primary btn-xs" %>
           <!-- USER details  -->
 
