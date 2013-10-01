@@ -43,7 +43,7 @@ if params[:tag]
      @invoice = @user.invoices.build(params[:invoice])
      @current_user_client = @user.clients
      
-   
+
      
   end 
 
@@ -64,7 +64,9 @@ if params[:tag]
     @invoice.client = @client
     
     if @client && @invoice.save
+      
       redirect_to invoice_path(@invoice)
+
     else
       if !@client
         @invoice.errors.add(:client, " can't be blank") if params[:client].blank?

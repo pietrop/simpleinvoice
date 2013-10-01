@@ -92,6 +92,7 @@ Tags: <%= raw @invoice.tag_list.map { |t| link_to t, tag_path(t), class: 'label 
           <p>
             <strong>Address:</strong>
             <%= @user.address %>
+
           </p>
           <p>
             <strong>Phone:</strong>
@@ -102,7 +103,7 @@ Tags: <%= raw @invoice.tag_list.map { |t| link_to t, tag_path(t), class: 'label 
             <%= @user.email %>
           </p>
 
-          <p>
+         <!--  <p>
             <strong>dob:</strong>
             <%= @user.dob %>
           </p>
@@ -119,10 +120,7 @@ Tags: <%= raw @invoice.tag_list.map { |t| link_to t, tag_path(t), class: 'label 
             <p>
             <strong>Job Title:</strong>
             <%= @user.jobtitle %>
-          </p>
-
-        
-
+          </p> -->
 
           <%= link_to 'Edit',  edit_user_path(@user), class: "btn btn-primary btn-xs" %>
           <!-- USER details  -->

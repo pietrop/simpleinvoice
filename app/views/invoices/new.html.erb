@@ -17,7 +17,7 @@
 
   <div class="form-group">
     <%= f.label :number %><br>
-    <%= f.text_field :number, placeholder:"#{if @user.invoices.first.number.nil? then 1 else @user.invoices.first.number + 1   end  }", class: 'form-control' %>
+    <%= f.text_field :number,placeholder:"#{if @user.invoices.first.number.nil? then 1 else @user.invoices.first.number + 1   end  }", class: 'form-control' %>
   </div>
 
 
@@ -38,7 +38,7 @@
 
 <div class="field form-group">
   <%= f.label :tag_list, "Tags" %><br />
-  <%= f.text_field :tag_list, placeholder: 'Tags sepated by commas, ie comapny, clients, project',  class: 'form-control'  %>
+  <%= f.text_field :tag_list,placeholder: "Tags sepated by commas, ie. #{@user.clients.last.name}, or project name",  class: 'form-control'  %>
 </div>
 
 
