@@ -120,9 +120,9 @@ Tags: <%= raw @invoice.tag_list.map { |t| link_to t, tag_path(t), class: 'label 
 
              <% else %>
 
-              <p>Proving <%= @invoice.services.first.description %> services
+              <p>Providing <%= @invoice.services.first.description %> services
                 <% if @client && @client.agency_client %>
-                  for <%= @client.agency_client %>
+                   
                 <% end %>
               as follow:</p>
 
