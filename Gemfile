@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 ruby '2.0.0'
 
@@ -9,9 +9,9 @@ gem 'rails_12factor'
 # # Use sqlite3 as the database for Active Record
 
 
-# # group :development do
-# 	gem 'sqlite3'  #might need to take this of for working in heroku
-#  # end
+# group :development do
+	gem 'sqlite3'  #might need to take this of for working in heroku
+ # end
 
 
 # group :production do
